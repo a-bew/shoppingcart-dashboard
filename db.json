@@ -1,0 +1,32 @@
+{
+	"users": [
+	  {
+	  	"id": 1,
+		"user-type": 1,
+		"username": "Adetola",
+		"password": "12345",
+		"profile": 1,
+	  }
+	],
+
+	"user-type": [
+      {"id": 1,
+       "name":"admin"
+      },
+      {"id": 2,
+      	"name": "end-user"
+      }
+	],
+
+	"profile": [
+      {"id": 1,
+       "firstname": "Adetola",
+       "lastname": "Bewaji",
+       "age": 31,
+       "country": "Nigeria",
+       "state": "Lagos",
+       "occupation": "programmer",
+       "address": "08, Nke-nike Street, off-custom bus-stop, Abaranje Road, Ikotun, Lagos"
+      },
+	]
+}
