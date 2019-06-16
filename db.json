@@ -4,7 +4,16 @@
 	  	"id": 1,
 		"user-type": 1,
 		"username": "Adetola",
+		"email": "adetola013@gmail.com",
 		"password": "12345",
+		"profile": 1
+	  },
+	  {
+	  	"id": 2,
+		"user-type": 1,
+		"username": "Emmanuel",
+		"email": "emma@gmail.com",
+		"password": "01234",
 		"profile": 1
 	  }
 	],
