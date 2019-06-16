@@ -5,7 +5,7 @@
 		"user-type": 1,
 		"username": "Adetola",
 		"password": "12345",
-		"profile": 1,
+		"profile": 1
 	  }
 	],
 
@@ -27,6 +27,6 @@
        "state": "Lagos",
        "occupation": "programmer",
        "address": "08, Nke-nike Street, off-custom bus-stop, Abaranje Road, Ikotun, Lagos"
-      },
+      }
 	]
 }
