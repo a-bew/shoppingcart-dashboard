@@ -70,12 +70,13 @@ const obj = (param, r)=>{
 }
 
 const apiAdminData = ()=>{
+  if (!localStorage.getItem("Userid")) return
+
     //Populate user-type
     adminDetails(obj, `http://localhost:3000/user-type`);    
     // Populate users
     adminDetails(obj, `http://localhost:3000/users`);
     // Populate profile
     adminDetails(obj, `http://localhost:3000/profile`);
-
 }
 
