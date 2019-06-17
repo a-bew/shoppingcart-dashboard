@@ -42,5 +42,24 @@
        "occupation": "programmer",
        "address": "08, Nke-nike Street, off-custom bus-stop, Abaranje Road, Ikotun, Lagos"
       }
+	],
+
+	"brands": [
+      {
+      	"id": 1,
+      	"name": "adidas"
+      },
+      {
+      	"id": 2,
+      	"name": "nike"
+      },
+      {
+      	"id": 3,
+      	"name": "kelvin klein"
+      },
+      {
+      	"id": 4,
+      	"name": "Diesel"
+      }
 	]
 }
