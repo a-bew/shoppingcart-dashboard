@@ -41,3 +41,35 @@ function getbrands() {
 }
 
 
+function brandValidation(){
+  var errorCount = 0;
+  var value = $('#aBrand').val();
+  console.log(value)
+  if(value === '') { errorCount++; }
+  return errorCount;
+}
+
+function addBrand(){
+  var error = brandValidation();
+  if (!error){
+	    $.ajax({
+	        url: 'http://localhost:3000/brands',
+	        data: {
+	            name: $('#aBrand').val(),
+	        },
+	        dataType: 'json',
+	        type: 'POST',
+	        success: function(data) {
+	            window.location.href="/admin/brand.html";
+	            window.location.reload=true;
+	        },
+	        error: function(error) {
+	            console.log(error);
+	        }
+	    });
+  } else {
+    alert('Please fill in all fields');
+    return false;
+  }
+}
+
