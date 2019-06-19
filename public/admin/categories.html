@@ -10,7 +10,7 @@
 </head>
 <body>
 	    <main> 
-     	<div class=>
+     	<div>
      		<nav class="col-sm-2">
 	          	<ul class="branding">
 	          		<li><a href="#"><img src="" alt="logo"></a></li>
@@ -20,7 +20,7 @@
             <nav class="col-sm-10 text-center">
 	          	<ul class="navbar">
 	          		<li class=""><a href="../admin/brand.html">Brand</a></li>
-	          		<li class=""><a href="#">Categories</a></li>
+	          		<li class=""><a href="../admin/categories.html">Categories</a></li>
 	          		<li class=""><a href="#">Products</a></li>
 	          		<li class=""><a href="#">Archived</a></li>
                 <li class=""><a href="#">Users</a></li>
@@ -30,36 +30,35 @@
   	    </nav> 
               <!-- Clear float -->
         <div class="clr"></div>
+
+    <div class="container categories-grid">
+      <div class="categories-form ">
+          <form name="login" action="#" method="post" class="grid">
+            <h5 class=""> Add A Category</h5>
+            <label for="cat-parent"><h6>Parent</h6></label>
+            <input class="form-control full-90" type="text" id="cat-parent" name="username" placeholder="Parent"/>
+            <label for="cat-categories"><h6>Category</h6></label>
+            <input class="form-control full-90" type="cat-categories" id="admin_password" name="password" placeholder="Category"/>
             
-        <div class="top-margin-20 text-center" id="brand-input-box">
-
-          </div>
-
-            <div class="clr"></div>
-            <div class="">
-            <div class="panel-body panel-body-panel text-center" >
-                <ul id="ulist-brands" class="">
-		            	<li class="list-group-item">
-                        	<label><strong>Brands</strong></label>
-			            </li>
-   			        </ul>
-     	      </div>                	
-            </div>
- 
-            <div class="clr"></div>
-
-<!--     <div class="row width-90">
-      <div class="top-margin-20 text-center">
-      	<h2>New Admin User</h2>         	          	
+            <input id="btnSubmit" class="btn btn-primary  full-20" value="Add a category">               
+          </form>
       </div>
-      <div  id="adminUsers">
-	      <table class="table">
-	      	<thead><th>Full name</th><th>Password</th><th>Email</th><th>Permission</th></thead>
-	      	<tbody></tbody>
-	      </table>       	  	
-      </div>
+
+        <div  id="product-cat-table">
+          <table class="table">
+            <thead><th><h5>Categories<h5></th><th><h5>Parent</h5></th><th></th></thead>
+            <tbody>
+              <tr>
+                <td>Men</td>
+                <td>Parent</td>
+                <td><span class="fa fa-pencil"></span>&nbsp&nbsp<span class="fa fa-trash"></span></td>
+              </tr>
+            </tbody>
+          </table>            
+        </div>
+    
     </div>
- -->	    
+
     </main>
 
     <script src='../js/jquery.js'></script>

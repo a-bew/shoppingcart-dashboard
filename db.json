@@ -59,6 +59,30 @@
     {
       "name": "Tommy",
       "id": 5
+    },
+    {
+      "name": "Diesel",
+      "id": 6
+    },
+    {
+      "name": "Element",
+      "id": 7
+    },
+    {
+      "name": "Forever 21",
+      "id": 8
+    },
+    {
+      "name": "Levi Strauss & Co.",
+      "id": 9
+    },
+    {
+      "name": "Moschino",
+      "id": 10
+    },
+    {
+      "name": "Nike",
+      "id": 11
     }
   ]
 }
