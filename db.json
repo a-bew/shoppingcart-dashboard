@@ -1,65 +1,64 @@
 {
-	"users": [
-	  {
-	  	"id": 1,
-		"user-type": 1,
-		"username": "Adetola",
-		"email": "adetola013@gmail.com",
-		"password": "12345",
-		"profile": 1
-	  },
-	  {
-	  	"id": 2,
-		"user-type": 2,
-		"username": "Emmanuel",
-		"email": "emma@gmail.com",
-		"password": "01234",
-		"profile": 2
-	  }
-	],
-
-	"user-type": [
-      {"id": 1,
-       "name":"admin"
-      },
-      {
-      	"id": 2,
-      	"name": "editor"
-      },
-      {"id": 3,
-      	"name": "public"
-      }
-
-	],
-
-	"profile": [
-      {"id": 1,
-       "firstname": "Adetola",
-       "lastname": "Bewaji",
-       "age": 31,
-       "country": "Nigeria",
-       "state": "Lagos",
-       "occupation": "programmer",
-       "address": "08, Nke-nike Street, off-custom bus-stop, Abaranje Road, Ikotun, Lagos"
-      }
-	],
-
-	"brands": [
-      {
-      	"id": 1,
-      	"name": "adidas"
-      },
-      {
-      	"id": 2,
-      	"name": "nike"
-      },
-      {
-      	"id": 3,
-      	"name": "kelvin klein"
-      },
-      {
-      	"id": 4,
-      	"name": "Diesel"
-      }
-	]
+  "users": [
+    {
+      "id": 1,
+      "user-type": 1,
+      "username": "Adetola",
+      "email": "adetola013@gmail.com",
+      "password": "12345",
+      "profile": 1
+    },
+    {
+      "id": 2,
+      "user-type": 2,
+      "username": "Emmanuel",
+      "email": "emma@gmail.com",
+      "password": "01234",
+      "profile": 2
+    }
+  ],
+  "user-type": [
+    {
+      "id": 1,
+      "name": "admin"
+    },
+    {
+      "id": 2,
+      "name": "editor"
+    },
+    {
+      "id": 3,
+      "name": "public"
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "firstname": "Adetola",
+      "lastname": "Bewaji",
+      "age": 31,
+      "country": "Nigeria",
+      "state": "Lagos",
+      "occupation": "programmer",
+      "address": "08, Nke-nike Street, off-custom bus-stop, Abaranje Road, Ikotun, Lagos"
+    }
+  ],
+  "brands": [
+    {
+      "name": "Adidas",
+      "id": 1
+    },
+    {
+      "id": 3,
+      "name": "kelvin klein"
+    },
+    {
+      "name": "nike",
+      "id": 4
+    },
+    {
+      "name": "Tommy",
+      "id": 5
+    }
+  ]
 }

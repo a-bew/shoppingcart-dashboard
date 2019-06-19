@@ -1,3 +1,28 @@
+window.onload = brandFunc;
+
+function brandFunc(){
+  addBrandInput(label="Add A Brand", buttonClck="addBrand", btnLabel="Add a Brand")
+  getbrands()
+}
+
+function addBrandInput(label, buttonClck, btnLabel, value){
+	console.log(value,"----");
+	var content = "";
+  	content += '<h2>Brands</h2>'   
+    content += '<div class="add-a-brand-control">' 
+    content += '<div class="col-md-4 col-sm-12 " style="padding: 10px 0;">'
+    content += '<label class="control-label">'+ label +'</label>';                    		
+    content += '</div>';
+    content += '<div class=" col-md-4 col-sm-12">';
+    content += '<input type="text" class="form-control" name="brand" id="aBrand" value="'+ (value?value:"")+'">'
+    content += '</div>';
+    content += '<div class="col-md-4 col-sm-12" >'
+    content += '<input type="button" name="add-brand" class="btn btn-success" onclick="'+buttonClck+'(this)" value="'+btnLabel+'">'                    	
+    content += '</div>';
+    content += '</div>';
+
+    $("#brand-input-box").html(content);
+}
 
 
 function brands(data) {
@@ -9,21 +34,20 @@ function brands(data) {
     $.each(brandsObj, function(index, value) {
 		content += '<li class="list-group-item ">';
 	    content += '<div class="pull-left">';
-	    content += '<a class="" href="" id="'+ value.id +'"><span class="fa fa-pencil"></span></a>'                    		
+	    content += '<a class="" data-id="'+ value.id +'" onclick="edit(this)"><span class="fa fa-pencil"></span></a>'                    		
 	    content += '</div>';
 	    content += '<label>'+ value.name +'</label>';
 	    content += '<div class="pull-right ">';
-	    content += '<a href="" name="" class="" id="'+ value.id +'"><span class="fa fa-trash"></span></a>';                    	
+	    content += '<a name="" class="" id = "btnUpdateBrand" onclick = "brandDelete(this)" data-id="'+ value.id +'"><span class="fa fa-trash"></span></a>';                    	
 	    content += '</div>';	              			            
 	    content += '</li>';
     });
 
-    console.log(content)
-    $('#ulist-brands').append(content);
+    // console.log(content)
+    $('#ulist-brands').html(content);
 
 }
 
-getbrands()
 function getbrands() {
     $(document).ready(function(){
         $.ajax({
@@ -73,3 +97,57 @@ function addBrand(){
   }
 }
 
+function edit(elm) {
+//	console.log(elm)
+    localStorage.setItem('brandId',$(elm).attr('data-id'));
+    $.ajax({
+        url: `http://localhost:3000/brands/${$(elm).attr("data-id")}`,
+        type: 'GET',
+        success: function(data) {
+            //Populate the Pop up        
+            addBrandInput(label="Edit A Brand", buttonClck="updateBrand", btnLabel="Submit", value=data['name'])
+            // $('#aBrand').val();
+             
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+// Update Event
+
+function updateBrand(){
+    $.ajax({
+        url: `/brands/${localStorage.getItem('brandId')}`,
+        data: {
+            name: $('#aBrand').val(),
+            id: localStorage.getItem('brandId')
+        },
+        dataType: 'json', 
+        type: 'PUT',
+        success: function(data) {
+            window.location.href='/admin/brand.html'
+            window.location.reload=true;
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+
+// Delete
+function brandDelete(elm) {
+    $.ajax({
+        url: `/brands/${$(elm).attr('data-id')}`,
+        type: 'DELETE',
+        success: function(res) {
+                window.location.href='/admin/brand.html';
+                window.location.reload=true;                
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
