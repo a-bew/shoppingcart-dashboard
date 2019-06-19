@@ -24,7 +24,6 @@ function addBrandInput(label, buttonClck, btnLabel, value){
     $("#brand-input-box").html(content);
 }
 
-
 function brands(data) {
     if (!localStorage.getItem("Userid")) return
     console.log(data)
