@@ -30,17 +30,28 @@
   	    </nav> 
               <!-- Clear float -->
         <div class="clr"></div>
+        <div class="top-margin-20 text-center">
+          <h3>Categories</h3>
+
+        </div>
+
+    <div class="clr"></div>
 
     <div class="container categories-grid">
-      <div class="categories-form ">
+      <div class="categories-form">
           <form name="login" action="#" method="post" class="grid">
-            <h5 class=""> Add A Category</h5>
+            <h5 class="h5-cat-title"> Add A Category</h5>
             <label for="cat-parent"><h6>Parent</h6></label>
-            <input class="form-control full-90" type="text" id="cat-parent" name="username" placeholder="Parent"/>
+            <select id="setParent" name="selectCat" class="selectCat">
+              <option value="" disabled selected>Please select an option</option>
+            </select>
+            <!-- <input class="form-control full-90" type="text" id="cat-parent" name="username" placeholder="Parent"/> -->
             <label for="cat-categories"><h6>Category</h6></label>
-            <input class="form-control full-90" type="cat-categories" id="admin_password" name="password" placeholder="Category"/>
-            
-            <input id="btnSubmit" class="btn btn-primary  full-20" value="Add a category">               
+            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+            <div class="btn-add-cat">
+             <input id="btnSubmitCat" class="btn btn-primary full-20" value="Add a category">
+              
+            </div>
           </form>
       </div>
 
@@ -48,20 +59,20 @@
           <table class="table">
             <thead><th><h5>Categories<h5></th><th><h5>Parent</h5></th><th></th></thead>
             <tbody>
-              <tr>
+<!--               <tr>
                 <td>Men</td>
                 <td>Parent</td>
                 <td><span class="fa fa-pencil"></span>&nbsp&nbsp<span class="fa fa-trash"></span></td>
               </tr>
+ -->            
             </tbody>
           </table>            
         </div>
-    
     </div>
-
     </main>
 
     <script src='../js/jquery.js'></script>
+    <script src='../js/ajax.js'></script>
     <script src='./js/categories.js'></script>
 
 </body>

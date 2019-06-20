@@ -63,7 +63,6 @@ function getbrands() {
     });
 }
 
-
 function brandValidation(){
   var errorCount = 0;
   var value = $('#aBrand').val();

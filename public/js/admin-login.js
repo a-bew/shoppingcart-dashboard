@@ -41,8 +41,8 @@ const obj = (param, r)=>{
 
 const apiData = ()=>{
     //Populate .select-make
-    adminLogin(obj, `http://localhost:3000/user-type`);    
+    loginEndPoint(obj, `http://localhost:3000/user-type`);    
 	// Populate .select-year-from
-    adminLogin(obj, `http://localhost:3000/users`);
+    loginEndPoint(obj, `http://localhost:3000/users`);
 }
 

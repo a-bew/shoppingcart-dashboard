@@ -38,7 +38,7 @@ function httpCrossBrowser(http_request){
   return http_request
 }
 
-function adminLogin(dataSet, apiEndpoint){
+function accessEndPoint(dataSet, apiEndpoint){
 
    var data_file =  apiEndpoint;
    var http_request = new XMLHttpRequest();
@@ -66,3 +66,30 @@ function adminLogin(dataSet, apiEndpoint){
     http_request.send();
 }
 
+function loginEndPoint(dataSet, apiEndpoint){
+
+   var data_file =  apiEndpoint;
+   var http_request = new XMLHttpRequest();
+   
+   httpCrossBrowser(http_request);
+
+   http_request.onreadystatechange = function(){
+      if (http_request.readyState == 4) {
+        // Javascript function JSON.parse to parse data
+        var jsonObj = JSON.parse(http_request.responseText);
+
+        // jsonObj variable now contains the data structure and can 
+        // be accessed as jsonObj.name and json.country
+
+        // document.getElementById("Name").textContent = jsonObj.name;
+        // document.getElementById('Country').textContent = jsonObj.country;
+        console.log(".....................er")
+//        http_request.status === 200 ? console.log(http_request.responseText) : console.error('error')
+//          dataSet(eval(http_request.responseText))
+            dataSet(jsonObj, 3);
+      }
+    } 
+
+    http_request.open("GET", data_file, true);
+    http_request.send();
+}

@@ -64,14 +64,14 @@ var i=1;
 
 const obj = (param, r)=>{
    dict[String(i++)] = param;
-    if (i === r){
+   if (i === r){
       adminusers(dict);
-    }
+      dict={}
+   }
 }
 
 const apiAdminData = ()=>{
   if (!localStorage.getItem("Userid")) return
-
     //Populate user-type
     adminDetails(obj, `http://localhost:3000/user-type`);    
     // Populate users
