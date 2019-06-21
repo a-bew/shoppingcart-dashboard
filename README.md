@@ -15,6 +15,10 @@
 4. port@3000
    - http://localhost:3000
 
+5. Default login details
+   - username: Adetola
+   - password: 12345
+
 ## Thank you message
    Thank you for your interest.
    Please feel free to send your observations and comment 
