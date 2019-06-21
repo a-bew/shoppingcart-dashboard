@@ -1,0 +1,210 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "user-type": 1,
+      "username": "Adetola",
+      "email": "adetola013@gmail.com",
+      "join-date": "",
+      "last-login": "",
+      "password": "12345",
+      "profile": 1
+    },
+    {
+      "id": 2,
+      "user-type": 2,
+      "username": "Emmanuel",
+      "email": "emma@gmail.com",
+      "join-date": "",
+      "last-login": "",
+      "password": "01234",
+      "profile": 2
+    }
+  ],
+  "user-type": [
+    {
+      "id": 1,
+      "name": "admin"
+    },
+    {
+      "id": 2,
+      "name": "editor"
+    },
+    {
+      "id": 3,
+      "name": "public"
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "firstname": "Adetola",
+      "lastname": "Bewaji",
+      "age": 31,
+      "country": "Nigeria",
+      "state": "Lagos",
+      "occupation": "programmer",
+      "address": "08, Nke-nike Street, off-custom bus-stop, Abaranje Road, Ikotun, Lagos"
+    }
+  ],
+  "brands": [
+    {
+      "name": "Adidas",
+      "id": 1
+    },
+    {
+      "id": 3,
+      "name": "kelvin klein"
+    },
+    {
+      "name": "nike",
+      "id": 4
+    },
+    {
+      "name": "Tommy",
+      "id": 5
+    },
+    {
+      "name": "Diesel",
+      "id": 6
+    },
+    {
+      "name": "Element",
+      "id": 7
+    },
+    {
+      "name": "Forever 21",
+      "id": 8
+    },
+    {
+      "name": "Levi Strauss & Co.",
+      "id": 9
+    },
+    {
+      "name": "Moschino",
+      "id": 10
+    },
+    {
+      "name": "Nike",
+      "id": 11
+    }
+  ],
+  "parent": [
+    {
+      "id": 1,
+      "name": "Men"
+    },
+    {
+      "id": 2,
+      "name": "Women"
+    },
+    {
+      "id": 3,
+      "name": "Boys"
+    },
+    {
+      "id": 4,
+      "name": "Girls"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Shirts",
+      "parent": "1",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "parent": 2,
+      "name": "Blouse"
+    },
+    {
+      "id": 3,
+      "parent": 3,
+      "name": "Pen"
+    },
+    {
+      "id": 4,
+      "parent": 4,
+      "name": "Eraser"
+    },
+    {
+      "id": 5,
+      "parent": 1,
+      "name": "Blouse"
+    },
+    {
+      "id": 6,
+      "parent": 1,
+      "name": "Shoes"
+    },
+
+    {
+      "name": "Vest",
+      "parent": "3",
+      "id": 7
+    },
+    {
+      "name": "Undies",
+      "parent": "2",
+      "id": 8
+    },
+    {
+      "name": "Trousers",
+      "parent": "1",
+      "id": 9
+    },
+    {
+      "name": "Wrist-watch",
+      "parent": "1",
+      "id": 10
+    },
+    {
+      "name": "Wrist-watch",
+      "parent": "2",
+      "id": 11
+    },
+    {
+      "name": "Socks",
+      "parent": "4",
+      "id": 12
+    },
+    {
+      "name": "Pants",
+      "parent": "1",
+      "id": 13
+    }
+
+  ],
+
+  "products":[
+    {"id": 1,
+      "name": "Levis Jeans",
+      "brand": 9,
+      "category": 13,
+      "price": 39.99,
+      "list-price": 46.00,
+      "size": 36,
+      "quantity": 3,
+      "featured": true,
+      "sold": 0,
+      "description": ""
+    }
+  ],
+
+  "archive":[
+    {"id": 1,
+      "name": "Levis Jeans",
+      "brand": 9,
+      "category": 13,
+      "price": 39.99,
+      "list-price": 46.00,
+      "size": 36,
+      "quantity": 3,
+      "featured": true,
+      "image_url": [],
+      "sold": 0,
+      "description": ""
+    }     
+  ]
+}
