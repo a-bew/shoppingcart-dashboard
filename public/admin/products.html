@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<title>Admin Home</title>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+
+</head>
+<body>
+	    <main> 
+     	<div class=>
+     		<nav class="col-sm-2">
+	          	<ul class="branding">
+	          		<li><a href="#"><img src="" alt="logo"></a></li>
+	            </ul>     			
+     		</nav>
+          <nav class="col-sm-10 nav-text-center">
+          	<ul class="navbar">
+          		<li class=""><a href="../admin/brand.html">Brand</a></li>
+          		<li class=""><a href="../admin/categories.html">Categories</a></li>
+          		<li class=""><a href="../admin/products.html">Products</a></li>
+          		<li class=""><a href="#">Archived</a></li>
+                <li class=""><a href="#">Users</a></li>
+          		<li class=""><a href="#">Hello Adetola</a></li>              
+          	</ul>          	
+          </nav> 
+              <!-- Clear float -->
+	          <div class="clr"></div>
+      <div class="top-margin-20 text-center" style="position: relative;">
+      	<h2>Products</h2>
+         	       <input id="btnSubmitCat" class="btn btn-success full-10" value="Add Product" style="position: absolute; right: 5px; top: 0px;">   	
+      </div>
+
+    <div class="container top-margin-20">
+      <div  id="adminProducts">
+	      <table class="table">
+	      	<thead><th></th><th>Product</th><th>Price</th><th>Category</th><th>
+            <div class="row">Feature</div></th><th>Sold</th></thead>
+	      	<tbody>
+	      	</tbody>
+	      </table>       	  	
+      </div>
+    </div>
+	    </main>
+
+    <div class="add-product container show top-margin-20">
+      <div class="text-center" style="position: relative;">
+        <h2>Add A Product</h2>
+    
+      </div>
+
+
+      <form class="grid-add-product form-horizontal top-margin-20">
+        <div class="three-col-add-product"> <!-- upper layer -->
+          <div class="grid">
+            <label for="cat-categories"><h6>Category</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+            
+          </div>
+
+          <div class="grid">
+            <label for="cat-categories"><h6>Category</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+          </div>
+
+          <div class="grid">
+            <label for="cat-categories"><h6>Category</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+          </div>
+
+          <div class="grid">
+            <label for="cat-categories"><h6>Category</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+          </div>
+
+          <div class="grid">
+            <label for="cat-categories"><h6>Category</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+          </div>
+
+          <div class="grid">
+            <label for="cat-categories"><h6>Category</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+          </div>
+
+          <div class="grid">
+            <label for="cat-categories"><h6>Category</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+          </div>
+          <div class="grid">
+            <label for="cat-categories"><h6>Category</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+          </div>
+        </div>
+
+        <div class="two-col-add-product"> <!-- lower layer -->
+         <div class="three-col-add-product"></div> 
+         <div class="grid">
+            <label for="cat-categories"><h6>Description</h6></label>
+            <textarea class="form-control full-95" style="height: 100px;"></textarea>
+            <div class="row">
+              <div class="pull-right">
+                <input type="button" name="cancel-add-product-btn" class="btn btn-default" value="Cancel">
+                <input type="button" name="add-product-btn" class="btn btn-success"  value="Submit">           
+             </div>              
+            </div>
+
+         </div>
+        </div>
+      </form>
+    </div>
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div id="keepOpen">
+        <span class="close">&times;</span>
+        <div class="modal-content" id="white">
+      
+        </div>
+        <!-- <img class="modal-content" id="img01"> -->
+        <div id="caption"></div>
+      </div>
+    </div>
+
+    <script src='../js/jquery.js'></script>
+    <script src='../js/ajax.js'></script>
+    <script src='./js/products.js'></script>
+
+</body>
+</html>
