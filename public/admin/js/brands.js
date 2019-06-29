@@ -31,7 +31,7 @@ function brands(data) {
     var content = '';
           
     $.each(brandsObj, function(index, value) {
-		content += '<li class="list-group-item ">';
+		content += '<li class="list-group-item mid">';
 	    content += '<div class="pull-left">';
 	    content += '<a class="" data-id="'+ value.id +'" onclick="edit(this)"><span class="fa fa-pencil"></span></a>'                    		
 	    content += '</div>';

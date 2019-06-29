@@ -9,8 +9,7 @@
 
 </head>
 <body>
-	    <main> 
-     	<div class=>
+<main> 
      		<nav class="col-sm-2">
 	          	<ul class="branding">
 	          		<li><a href="#"><img src="" alt="logo"></a></li>
@@ -28,9 +27,11 @@
           </nav> 
               <!-- Clear float -->
 	          <div class="clr"></div>
+    <div id="products-list-table">
+
       <div class="top-margin-20 text-center" style="position: relative;">
       	<h2>Products</h2>
-         	       <input id="btnSubmitCat" class="btn btn-success full-10" value="Add Product" style="position: absolute; right: 5px; top: 0px;">   	
+         	       <input id="btnAddProduct" class="btn btn-success" value="Add Product" style="position: absolute; right: 5px; top: 0px;">   	
       </div>
 
     <div class="container top-margin-20">
@@ -43,85 +44,294 @@
 	      </table>       	  	
       </div>
     </div>
-	    </main>
+  </div>
+</main>
+  <!-- Add A Product -->
 
-    <div class="add-product container show top-margin-20">
+    <div id="add-product" class="container hide top-margin-20">
       <div class="text-center" style="position: relative;">
         <h2>Add A Product</h2>
-    
       </div>
 
-
       <form class="grid-add-product form-horizontal top-margin-20">
-        <div class="three-col-add-product"> <!-- upper layer -->
+        <div id="addProductForm" class="three-col-add-product"> <!-- upper layer -->
           <div class="grid">
-            <label for="cat-categories"><h6>Category</h6></label>
-            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
-            
+            <label for="addProductTitle"><h6>Title*:</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="addProductTitle" name="addProductTitle" placeholder="Title"/>
           </div>
 
           <div class="grid">
-            <label for="cat-categories"><h6>Category</h6></label>
-            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+            <label for="cat-categories"><h6>Brand*:</h6></label>
+            <select id="productBrand" name="productBrand" class="form-control productBrand">
+              <option value="" disabled selected></option>
+            </select>
+
           </div>
 
           <div class="grid">
-            <label for="cat-categories"><h6>Category</h6></label>
-            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+            <label for="productParentCat"><h6>Parent Category*:</h6></label>
+            <select id="productParentCat" name="productParentCat" class="form-control productParentCat">
+              <option value="" disabled selected></option>
+            </select>
           </div>
 
           <div class="grid">
-            <label for="cat-categories"><h6>Category</h6></label>
-            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+            <label for="productChildCat"><h6>Child Category*:</h6></label>
+            <select id="productChildCat" name="productChildCat" class="form-control productChildCat">
+              <option value="" disabled selected></option>
+            </select>
+
           </div>
 
           <div class="grid">
-            <label for="cat-categories"><h6>Category</h6></label>
-            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+            <label for="addProductPrice"><h6>Price</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="addProductPrice" name="addProductPrice" placeholder="Price"/>
           </div>
 
           <div class="grid">
-            <label for="cat-categories"><h6>Category</h6></label>
-            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+            <label for="addProductListPrice"><h6>Price List</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="addProductListPrice" name="addProductListPrice" placeholder="Price List"/>
           </div>
 
           <div class="grid">
-            <label for="cat-categories"><h6>Category</h6></label>
-            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
-          </div>
+            <label for="btnProductQtyAndSize"><h6>Quantity & Sizes*:</h6></label>
+            <input id="btnProductQtyAndSize" type="button" class="btn btn-default" value="Quantity & Sizes" style="border: gray 0.04em solid"; >
+<!--             <input class="form-control full-95 cat-categories" type="text" id="productQtyAndSize" name="productQtyAndSize" placeholder="Quantity & Sizes"/>
+ -->          </div>
           <div class="grid">
-            <label for="cat-categories"><h6>Category</h6></label>
-            <input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>
+            <label for="sizesAndQtiesPrev"><h6>Sizes & Quantities Preview:</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="sizesAndQtiesPrev" name="sizesAndQtiesPrev" placeholder="Sizes & Quantities Preview"/>
           </div>
         </div>
 
         <div class="two-col-add-product"> <!-- lower layer -->
-         <div class="three-col-add-product"></div> 
+          <div grid>
+            <div class="grid">
+              <label for="productPhoto"><h6>Product Photo:</h6></label>
+              <input class="form-control full-95 cat-categories" type="file" id="productPhoto" name="productPhoto" />
+            </div>            
+            <div class="three-col-add-product"></div>          
+          </div>
          <div class="grid">
-            <label for="cat-categories"><h6>Description</h6></label>
-            <textarea class="form-control full-95" style="height: 100px;"></textarea>
+            <label for="addProductDesc"><h6>Description</h6></label>
+            <textarea id="addProductDesc" class="form-control full-95" style="height: 100px;"></textarea>
             <div class="row">
               <div class="pull-right">
-                <input type="button" name="cancel-add-product-btn" class="btn btn-default" value="Cancel">
-                <input type="button" name="add-product-btn" class="btn btn-success"  value="Submit">           
+                <input type="button" id = "btnCancelSubmitProduct" name="cancel-add-product-btn" class="btn btn-default" value="Cancel">
+                <input type="button" id="btnSubmitProduct" name="add-product-btn" class="btn btn-success"  value="Submit">           
              </div>              
             </div>
-
          </div>
         </div>
       </form>
     </div>
 
 
+    <!--  Edit A Product -->
+    <div id="edit-product" class="container hide top-margin-20">
+      <div class="text-center" style="position: relative;">
+        <h2>Edit A Product</h2>
+      </div>
+
+      <form class="grid-add-product form-horizontal top-margin-20">
+        <div id="editProductForm" class="three-col-add-product"> <!-- upper layer -->
+          <div class="grid">
+            <label for="editProductTitle"><h6>Title*:</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="editProductTitle" name="editProductTitle" placeholder="Title"/>
+          </div>
+
+          <div class="grid">
+            <label for="editProductBrand"><h6>Brand*:</h6></label>
+            <select id="editProductBrand" name="editProductBrand" class="form-control selectCat">
+              <option value="" disabled selected></option>
+            </select>
+
+          </div>
+
+          <div class="grid">
+            <label for="editProductParentCat"><h6>Parent Category*:</h6></label>
+            <select id="editProductParentCat" name="editProductParentCat" class="form-control selectCat">
+              <option value="" disabled selected></option>
+            </select>
+          </div>
+
+          <div class="grid">
+            <label for="editProductChildCat"><h6>Child Category*:</h6></label>
+            <select id="editProductChildCat" name="editProductChildCat" class="form-control selectCat">
+              <option value="" disabled selected></option>
+            </select>
+
+          </div>
+
+          <div class="grid">
+            <label for="editProductPrice"><h6>Price</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="editProductPrice" name="editProductPrice" placeholder="Price"/>
+          </div>
+
+          <div class="grid">
+            <label for="editProductPriceList"><h6>Price List</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="editProductPriceList" name="editProductPriceList" placeholder="Price List"/>
+          </div>
+
+          <div class="grid">
+            <label for="editProductPriceList"><h6>Quantity & Sizes*:</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="editProductPriceList" name="editProductPriceList" placeholder="Quantity & Sizes"/>
+          </div>
+          <div class="grid">
+            <label for="editSizesAndQtiesPrev"><h6>Sizes & Quantities Preview:</h6></label>
+            <input class="form-control full-95 cat-categories" type="text" id="editSizesAndQtiesPrev" name="editSizesAndQtiesPrev" placeholder="Sizes & Quantities Preview"/>
+          </div>
+        </div>
+
+        <div class="two-col-add-product"> <!-- lower layer -->
+          <div grid>
+            <div class="grid">
+              <label for="editProductPhoto"><h6>Product Photo:</h6></label>
+              <input class="form-control full-95 cat-categories" type="file" id="editProductPhoto" name="editProductPhoto" />
+            </div>            
+            <div class="three-col-add-product"></div>          
+          </div>
+         <div class="grid">
+            <label for="cat-categories"><h6>Description</h6></label>
+            <textarea class="form-control full-95" style="height: 100px;"></textarea>
+            <div class="row">
+              <div class="pull-right">
+                <input type="button" id = "editBtnCancelSubmitProduct" name="editBtnCancelSubmitProduct" class="btn btn-default" value="Cancel">
+                <input type="button" id="editBtnSubmitProduct" name="editBtnSubmitProduct" class="btn btn-success"  value="Submit"> 
+             </div>              
+            </div>
+         </div>
+        </div>
+      </form>
+    </div>
+
     <!-- The Modal -->
     <div id="myModal" class="modal">
       <div id="keepOpen">
         <span class="close">&times;</span>
         <div class="modal-content" id="white">
-      
+
+        <div id="caption" class="container top-margin-20">
+
+            <div class="">
+              <h2>Edit A Product</h2>
+            </div>
+
+          <form class="grid-qty-size container top-margin-20">
+            <div class="grid panel-body-panel">
+              
+            <div id="containerSizeAndqty" class=" four-col-size-and-qty"> <!-- upper layer -->
+
+              <div class="grid panel-body-panel">
+                <label for="size1"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size1" name="size1" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty1"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty1" name="qty1" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="size2"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size2" name="size2" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty2"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty2" name="qty2" />
+              </div>
+
+
+              <div class="grid panel-body-panel">
+                <label for="size3"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size3" name="size3" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty3"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty3" name="qty3" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="size4"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size4" name="size4" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty4"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty4" name="qty4" />
+              </div>
+
+
+              <div class="grid panel-body-panel">
+                <label for="size5"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size5" name="size5" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty5"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty5" name="qty5" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="size6"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size6" name="size6" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty7"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty7" name="qty7" />
+              </div>
+
+              <div class="grid panel-body-panel">
+                <label for="size8"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size8" name="size8" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty8"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty8" name="qty8" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="size9"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size9" name="size9" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty9"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty9" name="qty9" />
+              </div>
+
+              <div class="grid panel-body-panel">
+                <label for="size10"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size10" name="size10" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty10"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty10" name="qty10" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="size11"><h6>Size*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="size11" name="size11" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="qty11"><h6>Quantity*:</h6></label>
+                <input type="text" class="form-control full-95 cat-categories" type="text" id="qty11" name="qty11" />
+              </div>
+            </div>
+
+              <div class="row">
+                <div class="col-md-6 col-sm-6 pull-right">
+                  <div>
+                    <input type="button" id = "btnCancelSubmitSizeQty" name="cancel-add-product-btn" class="btn btn-default col-md-6 col-sm-6 btnCancelSubmitSizeQty spaceBtn" value="Cancel">                    
+                  </div>
+                  <div>
+                    <input type="button" id="btnSubmittSizeQty" name="add-product-btn" class="btn btn-success col-sm-6 col-md-6 btnSubmittSizeQty"  value="Submit">
+                  </div>
+               </div>
+              </div>
+
+            </div>
+
+          </form>
+
+          
+
+        </div>
+
+
         </div>
         <!-- <img class="modal-content" id="img01"> -->
-        <div id="caption"></div>
       </div>
     </div>
 

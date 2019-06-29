@@ -57,15 +57,11 @@
       "name": "kelvin klein"
     },
     {
-      "name": "nike",
-      "id": 4
-    },
-    {
       "name": "Tommy",
       "id": 5
     },
     {
-      "name": "Diesel",
+      "name": "diesel",
       "id": 6
     },
     {
@@ -130,15 +126,14 @@
     },
     {
       "id": 5,
-      "parent": 1,
-      "name": "Blouse"
+      "parent": 4,
+      "name": "Pencil"
     },
     {
       "id": 6,
       "parent": 1,
       "name": "Shoes"
     },
-
     {
       "name": "Vest",
       "parent": "3",
@@ -174,16 +169,15 @@
       "parent": "1",
       "id": 13
     }
-
   ],
-
-  "products":[
-    {"id": 1,
+  "products": [
+    {
+      "id": 1,
       "name": "Levis Jeans",
       "brand": 9,
       "category": 13,
       "price": 39.99,
-      "list-price": 46.00,
+      "list-price": 46,
       "size": 36,
       "quantity": 3,
       "featured": true,
@@ -191,20 +185,20 @@
       "description": ""
     }
   ],
-
-  "archive":[
-    {"id": 1,
+  "archive": [
+    {
+      "id": 1,
       "name": "Levis Jeans",
       "brand": 9,
       "category": 13,
       "price": 39.99,
-      "list-price": 46.00,
+      "list-price": 46,
       "size": 36,
       "quantity": 3,
       "featured": true,
       "image_url": [],
       "sold": 0,
       "description": ""
-    }     
+    }
   ]
 }

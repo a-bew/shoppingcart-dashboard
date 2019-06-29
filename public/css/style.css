@@ -1,6 +1,8 @@
 *{
 	padding: 0;
 	margin: 0;
+  box-sizing:border-box;
+
 }
 
 html {
@@ -812,8 +814,8 @@ form.grid{
 .categories-grid{
   display: grid;
   grid-template-columns: 1fr;
-    grid-gap: 15px;
-    margin-top: 20px;
+  grid-gap: 15px;
+  margin-top: 20px;
 }
 
 @media (min-width: 768px) {
@@ -831,9 +833,8 @@ form.grid{
 
 /* Admin Brands */
 .panel-body-panel{
-    margin: 40px auto; 
-    width: 50%;
-    list-style-type: none;
+    margin: 10px; 
+
 }
 
 .list-group-list{
@@ -873,6 +874,12 @@ select.selectCat {
   grid-gap: 15px;  
 }
 
+.four-col-size-and-qty{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 15px;      
+}
+
 @media (min-width: 768px) {
 /* Product page */
   .three-col-add-product{
@@ -885,6 +892,12 @@ select.selectCat {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 15px;  
+  }
+
+  .four-col-size-and-qty{
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 1fr;
+    grid-gap: 15px;      
   }
 }
 
@@ -911,9 +924,9 @@ select.selectCat {
 .modal-content {
   margin: auto;
   display: block;
-  width: 80%;
+  width: 100%;
   max-width: 700px;
-  height: 90%;
+  height: 100%;
 }
 
 
@@ -959,4 +972,3 @@ select.selectCat {
     width: 100%;
   }
 }
-
