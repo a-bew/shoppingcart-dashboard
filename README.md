@@ -7,7 +7,7 @@
    - cd shoppingcart-dashboard
 
 2. Json-server 
-   - npm install -save-dev json-server
+   - npm install --save-dev json-server
 
 3. Start app@console
    - node server.js
