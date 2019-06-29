@@ -7,10 +7,10 @@
    - cd shoppingcart-dashboard
 
 2. Json-server 
-   - npm install -g json-server
+   - npm install -save-dev json-server
 
 3. Start app@console
-   - json-server --watch db.json
+   - node server.js
 
 4. port@3000
    - http://localhost:3000
