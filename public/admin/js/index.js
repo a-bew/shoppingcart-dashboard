@@ -16,7 +16,6 @@ function adminDetails(dataSet, apiEndpoint){
         // Javascript function JSON.parse to parse data
         var jsonObj = JSON.parse(http_request.responseText);
 
-        console.log(".....................er")
             dataSet(jsonObj, 4);
       }
     } 

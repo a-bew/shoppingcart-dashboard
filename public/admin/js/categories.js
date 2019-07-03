@@ -15,8 +15,6 @@ function catFunc(argument) {
 
 }
 
-
-
 // Populate Parent
 
 function getParentCategories() {
@@ -245,12 +243,12 @@ function cancelUpdate(){
 // Update Event
 
 function updateCat(cat){
-    elm = document.querySelector(".selectCat");
+  elm = document.querySelector(".selectCat");
 	var target = elm.options.selectedIndex;
-    cat.parent = target
-    cat["name"] = $("#catVal").val();
+  cat.parent = target
+  cat["name"] = $("#catVal").val();
 
-    console.log(cat)
+  console.log(cat)
 
     if (cat.parent && cat.name){
 
@@ -276,7 +274,6 @@ function updateCat(cat){
 	    return false;  	
     }
 }
-
 
 // Delete
 function deleteCat(elm) {

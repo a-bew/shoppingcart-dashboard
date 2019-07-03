@@ -864,7 +864,7 @@ select.selectCat {
 /* Product page */
 .three-col-add-product{
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 30px;
 }
 
