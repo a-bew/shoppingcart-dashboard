@@ -46,6 +46,7 @@
     </div>
   </div>
 </main>
+
   <!-- Add A Product -->
 
     <div id="add-product" class="container hide top-margin-20">
@@ -53,7 +54,7 @@
         <h2>Add A Product</h2>
       </div>
 
-      <form class="grid-add-product form-horizontal top-margin-20">
+      <form class="grid-add-product form-horizontal top-margin-20"  method="post" action="/upload" enctype="multipart/form-data">
         <div id="addProductForm" class="three-col-add-product"> <!-- upper layer -->
           <div class="grid">
             <label for="addProductTitle"><h6>Title*:</h6></label>
@@ -108,9 +109,9 @@
           <div grid>
             <div class="grid">
               <label for="productPhoto"><h6>Product Photo:</h6></label>
-              <input class="form-control full-95 cat-categories" type="file" id="productPhoto" name="productPhoto" />
+              <input class="form-control full-95 cat-categories" type="file" required accept="image/*" data-url="/upload" multiple name="photo" id="productPhoto" name="productPhoto" />
             </div>            
-            <div class="three-col-add-product"></div>          
+            <div id="fileUploads" class="three-col-add-product"></div>       
           </div>
          <div class="grid">
             <label for="addProductDesc"><h6>Description</h6></label>
@@ -336,6 +337,9 @@
     </div>
 
     <script src='../js/jquery.js'></script>
+    <script src='../vendor/jqfu/js/jquery.ui.widget.js'></script>
+    <script src='../vendor/jqfu/js/jquery.iframe-transport.js'></script>
+    <script src='../vendor/jqfu/js/jquery.fileupload.js'></script>
     <script src='../js/ajax.js'></script>
     <script src='./js/products.js'></script>
 
