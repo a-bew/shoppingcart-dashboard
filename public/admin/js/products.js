@@ -6,15 +6,17 @@ function productFunc(){
   getBrands()
   getParentCategory()
 
-document.querySelector("#addProductTitle").addEventListener("change", collectInput.setTitle);
-document.querySelector("#addProductPrice").addEventListener("change", collectInput.setPrice);
-document.querySelector("#addProductListPrice").addEventListener("change", collectInput.setListPrice);
-document.querySelector("#addProductDesc").addEventListener("change", collectInput.setDesc);
+  document.querySelector("#addProductTitle").addEventListener("change", collectInput.setTitle);
+  document.querySelector("#addProductPrice").addEventListener("change", collectInput.setPrice);
+  document.querySelector("#addProductListPrice").addEventListener("change", collectInput.setListPrice);
+  document.querySelector("#addProductDesc").addEventListener("change", collectInput.setDesc);
 
   document.querySelector(".productBrand").addEventListener("change", collectInput.setBrandAttr);
   document.querySelector(".productParentCat").addEventListener("change", collectInput.setPParentAttr);
   document.querySelector("#productChildCat").addEventListener("change", collectInput.setChildCat);
   document.querySelector(".btnSubmittSizeQty").addEventListener("click", function(event){ event.preventDefault();collectInput.setSizessAndQtiesPrev()});
+  
+  // $("#productPhoto").change(function(event){ collectInput.setProductPhoto(event)});
 }
 
 // populateProducts
@@ -88,7 +90,7 @@ function populateProducts(dict) {
   $.each(products, function(index, elm) {
   	    console.log(categories);
   	    value = elm["category"]-1
-        console.log(categories[value]["parent"]-1, parents)
+        // console.log(categories[value]["parent"]-1, parents)
 
         cat = categories[elm["category"]-1]["name"];
         catIndex = eval(categories[eval(elm["category"]-1)]["parent"]-1)
@@ -246,7 +248,7 @@ var collectInput  = {
  productPhoto: Array(),
  desc: "",
 
- // getdata methods
+ // setdata methods
  setTitle: setTitle,
  setPrice: setPrice,
  setListPrice: setListPrice,
@@ -258,19 +260,17 @@ var collectInput  = {
  setChildCat: setChildCat,
  setSizessAndQtiesPrev: setSizessAndQtiesPrev,
  setProductPhoto: setProductPhoto,
+
  outputCollectInput: outputCollectInput 
 }
 
 
 function setTitle({target}){
   collectInput.title = target.value;       //as id   
-  console.log(collectInput.title)
-  console.log(collectInput.outputCollectInput())
 }
 
 function setPrice({target}){
   collectInput.price = target.value;       //as id   
-
 }
 
 function setListPrice({target}){
@@ -283,6 +283,10 @@ function setDesc({target}){
 }
 
 function outputCollectInput(){
+  if (this.tmpPhotoIsselected){
+    console.log("running")
+    fileUploading();
+  } 
   return {title:this.title, 
           brand: this.brand, 
           parentCat: this.parentCat,
@@ -305,7 +309,6 @@ function setPParentAttr({target}){
 }
 
 function setChildCat({target}){
-
   collectInput.childCat = parseInt(target.value, 10);       //as id  
 }
 
@@ -330,19 +333,55 @@ function setSizessAndQtiesPrev(){
       sizesAndQtiesPrev.push(sub)
       sub = [];
     }
-  
   })
+
   this.sizesAndQtiesPrev = sizesAndQtiesPrev
   console.log(this.outputCollectInput())
   closeSpanBtn();  
 }
 
-function setProductPhoto({target}){
+function setProductPhoto(files){
+  content = "";
+  arr = Array.from(files);
+  collectInput.productPhoto.push(...arr);
+  console.log(collectInput.productPhoto)
+  if (!collectInput.productPhoto) return
 
+  $.each(collectInput.productPhoto, function(index, file){
+    content += '<div class="upload">' +
+      '<img src="' + file.url + '" alt="logo"  width=100 height=100 style="margin: auto"><br> \
+      <a rel='+index+' onclick="removeSelectedImg(this)" style="cursor:pointer;"><em>remove</em></a></div>';    
+  });
+
+  $('#fileUploads').html(content)
 }
 
   // End
 // Input Keeper Class
+
+function resetProductPhoto(files){
+  content = "";
+  arr = Array.from(files);
+  collectInput.productPhoto = Array();
+  collectInput.productPhoto.push(...arr);
+  console.log(collectInput.productPhoto)
+  if (!collectInput.productPhoto) return
+  $.each(collectInput.productPhoto, function(index, file){
+    content += '<div class="upload">' +
+      '<img src="' + file.url + '" alt="logo"  width=100 height=100 style="margin: auto"><br> \
+      <a rel='+index+' onclick="removeSelectedImg(this)" style="cursor:pointer;"><em>remove</em></a></div>';    
+  });
+  $('#fileUploads').html(content)
+}
+
+function removeSelectedImg(evt){
+  fileId = evt.rel
+  ob = collectInput.productPhoto[fileId]
+  removeImg(ob.deleteUrl)
+  removeImg(ob.url)
+  collectInput.productPhoto.splice(fileId, 1)
+}
+
 
 function addAProduct(cat) {
   cat["name"] = $("#catVal").val();
@@ -369,7 +408,6 @@ function addAProduct(cat) {
       })
     // JQuery code to be added in here.
     });   
-
   } else {
     alert('Please fill in all fields');
     return false;   
@@ -445,8 +483,6 @@ const optionsParent = function(table, parentNodeId) {
   $(parentNodeId).html(optionElem);
 }
 
-
-
 // Modal
 $('#btnProductQtyAndSize').on('click', makeModal);
 
@@ -488,7 +524,6 @@ function rootClick() {
 function closeSpanBtn(){
   var modal = document.getElementById("myModal");
   modal.style.display = "none";
-
 }  
 
 function modalClick(e) {
@@ -496,4 +531,30 @@ function modalClick(e) {
 	e.stopPropagation();
 	e.stopImmediatePropagation();
 	return false;
+}
+  // $('productPhoto').on('click touchstart', function(){
+  //   $(this).val('');
+  // })
+
+$('#productPhoto').fileupload({
+    dataType: 'json',
+    done: function(e, data){
+      setProductPhoto(data.result.files)
+    }
+});  
+
+// Delete/Remove Img
+function removeImg(url) {
+  $.ajax({
+    url: url,
+    type: 'DELETE',
+    success: function(res) {
+
+      resetProductPhoto(Array.from(collectInput.productPhoto))
+      console.log("Found", res)
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
 }
