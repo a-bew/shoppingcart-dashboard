@@ -6,6 +6,9 @@ function productFunc(){
   getBrands()
   getParentCategory()
 
+  //  Image Length - To track the last json db image id
+  DbLastImageId()
+
   document.querySelector("#addProductTitle").addEventListener("change", collectInput.setTitle);
   document.querySelector("#addProductPrice").addEventListener("change", collectInput.setPrice);
   document.querySelector("#addProductListPrice").addEventListener("change", collectInput.setListPrice);
@@ -14,7 +17,7 @@ function productFunc(){
   document.querySelector(".productBrand").addEventListener("change", collectInput.setBrandAttr);
   document.querySelector(".productParentCat").addEventListener("change", collectInput.setPParentAttr);
   document.querySelector("#productChildCat").addEventListener("change", collectInput.setChildCat);
-  document.querySelector(".btnSubmittSizeQty").addEventListener("click", function(event){ event.preventDefault();collectInput.setSizessAndQtiesPrev()});
+  document.querySelector(".btnSubmittSizeQty").addEventListener("click", function(event){ event.preventDefault();collectInput.setSizessAndQtiesPrev("#sizesAndQtiesPrev")});
   
   // $("#productPhoto").change(function(event){ collectInput.setProductPhoto(event)});
 }
@@ -138,19 +141,34 @@ $('#btnSubmitProduct').on('click', submitAddProduct);
 $('#btnCancelSubmitProduct').on('click', cancelAddProduct);
 
 
+function DbLastImageId(){
+    $(document).ready(function(){
+        $.ajax({
+          url: `http://localhost:3000/image_url`,
+          type: 'GET', 
+          success: function(data){
+            localStorage.setItem("trackImageId", data.length);
+            console.log("len-", data.length-1);
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        })
+        // JQuery code to be added in here.
+    });  
+}
+
 function showAddProductForm(){
-  
+   
     window.location.href = "/admin/products.html?add=1"
     window.location.reload = false;
 
     localStorage.setItem("addProductClass", "hide");
     localStorage.setItem("productTableClass", "hide");
-
     // getProductView()
 
     // document.querySelector("#products-list-table").classList.add("hide");   
     // document.querySelector("#add-product").classList.remove("hide");      
-
 
 }
 
@@ -185,11 +203,80 @@ function navigationType(){
   return result;
 }
 
+// Submit Add Product Form
 function  submitAddProduct(){
   // Submission processing method here 
+  event.preventDefault();
+  
+  const { title, brand, parentCat, childCat, sizesAndQtiesPrev} = collectInput.outputCollectInput()
+  
+  if (!title || !brand || !parentCat || !childCat || !sizesAndQtiesPrev){
+    return alert("Please fill in all asterisked* input box");
+  }
+  
+   
+  
+  addProductToDb()
+
   apiProductData(); 
   document.querySelector("#products-list-table").classList.remove("hide");   
   document.querySelector("#add-product").classList.add("hide");  
+  window.location.href = "/admin/products.html"
+
+}
+
+function makeStr(arr, val){
+  arr.forEach(function(elm){
+     val += elm.join(":")+", ";
+  })
+  return val;  
+}
+
+function makeString(arr, val){
+  for (var elm of arr){
+     val += elm.id+"; ";
+  }
+  return val; 
+}
+
+function addProductToDb(){
+  const { sizesAndQtiesPrev, productPhoto, ...productsData } =  collectInput.outputCollectInput()
+  let sAndQ = ""; 
+  let pPhoto = "";
+  sAndQ = makeStr(sizesAndQtiesPrev, sAndQ)
+  pPhoto = makeString(productPhoto, pPhoto)    
+  const { parentCat:brand, childCat:category, listPrice:list_price,  desc:description, title, price}  = productsData; 
+  alert('brand:'+brand+"\ncategory:"+category+"\nlist_price:"+list_price+"\ndescription:"+description+"\ntitle:"+title+"\nsold:"+sold+"\nfeaured:"+true+"\nbrand:"+brand+"\nprice"+price+"\nsAndQ:"+sAndQ+"\npPhoto:"+pPhoto)
+  udata = {
+    name: title,
+    brand: brand,
+    category: category,
+    price: price,
+    list_price: list_price,
+    size_qty:  sAndQ,
+    featured: false,
+    sold: sold,
+    image_ids: pPhoto,
+    description: description
+  }
+  addProductEndpoint(udata)
+}
+
+function addProductEndpoint(udata){
+  $(document).ready(function(){
+      $.ajax({
+        url: 'http://localhost:3000/products/',
+        type: 'POST',
+        data: udata,
+        success: function(data){
+             console.log(data)
+        }, 
+        error: function(error) {
+        console.log(error);
+      }
+    })
+  // JQuery code to be added in here.
+  });   
 }
 
 function  cancelAddProduct(){
@@ -218,24 +305,30 @@ function textValidation(){
 }
 
 function selectElm(){
-  var errorCount = 0;
   var value = $('#catVal').val();
   if(value === '') { this.errorCount++; }
 }
 
-function imgInputValidation(){}
+function imgInputValidation(){
+  document.querySelectorAll('.three-col-add-product img.').forEach(function(val, index) {
+    if(val.src === ''){this.errorCount++; }
+  });
+}
 
-function textAreaValidation(){}
+function textAreaValidation(){
+  var value = $('#catVal').val();
+  if(value === '') { this.errorCount++; }  
+}
 
   // End
 // Error Class
 
 // Input Keeper Class
   // Start
+
 var input = function(attr){
   return attr;
 }
-
 var collectInput  = {
  // data
  title: "",
@@ -264,7 +357,6 @@ var collectInput  = {
  outputCollectInput: outputCollectInput 
 }
 
-
 function setTitle({target}){
   collectInput.title = target.value;       //as id   
 }
@@ -282,11 +374,8 @@ function setDesc({target}){
   collectInput.desc = target.value;       //as id   
 }
 
+
 function outputCollectInput(){
-  if (this.tmpPhotoIsselected){
-    console.log("running")
-    fileUploading();
-  } 
   return {title:this.title, 
           brand: this.brand, 
           parentCat: this.parentCat,
@@ -312,11 +401,10 @@ function setChildCat({target}){
   collectInput.childCat = parseInt(target.value, 10);       //as id  
 }
 
-function setSizessAndQtiesPrev(){
-
+function setSizessAndQtiesPrev(id){
   // target.preventDefault();
   inputNodes = document.querySelectorAll("#containerSizeAndqty input[type='text']")  
-  var sizesAndQtiesPrev = this.sizesAndQtiesPrev
+  var sizesAndQtiesPrev = []
   var sub = [];
 
   $.each(inputNodes, function(indx, node) {
@@ -334,34 +422,58 @@ function setSizessAndQtiesPrev(){
       sub = [];
     }
   })
+  this.sizesAndQtiesPrev = sizesAndQtiesPrev;
 
-  this.sizesAndQtiesPrev = sizesAndQtiesPrev
-  console.log(this.outputCollectInput())
+  let val = "";
+  sizesAndQtiesPrev.forEach(function(elm){
+     val += elm.join(":")+", ";
+  })  
+  document.querySelector(id).value = val;
+
   closeSpanBtn();  
+
 }
 
 function setProductPhoto(files){
+  imgIdCurrentAtLoadTime=parseInt(localStorage.getItem("trackImageId"), 10)
+  
   content = "";
   arr = Array.from(files);
   collectInput.productPhoto.push(...arr);
   console.log(collectInput.productPhoto)
   if (!collectInput.productPhoto) return
-
+  
+  let incrementingId = imgIdCurrentAtLoadTime
+  
   $.each(collectInput.productPhoto, function(index, file){
-    content += '<div class="upload">' +
-      '<img src="' + file.url + '" alt="logo"  width=100 height=100 style="margin: auto"><br> \
-      <a rel='+index+' onclick="removeSelectedImg(this)" style="cursor:pointer;"><em>remove</em></a></div>';    
-  });
+    if (!collectInput.productPhoto[index]["id"]){
 
+      incrementingId++;
+      collectInput.productPhoto[index]["id"] = incrementingId; 
+      localStorage.setItem("trackImageId", incrementingId)     
+      content += '<div class="upload">' +
+      '<img src="' + file.url + '" alt="logo"  width=100 height=100 style="margin: auto"><br> \
+      <a rel='+index+' data-id='+ incrementingId+' onclick="removeSelectedImg(this)" style="cursor:pointer;"><em>remove</em></a></div>';
+
+    } else {
+
+      content += '<div class="upload">' +
+      '<img src="' + file.url + '" alt="logo"  width=100 height=100 style="margin: auto"><br> \
+      <a rel='+index+' data-id='+ file.id+' onclick="removeSelectedImg(this)" style="cursor:pointer;"><em>remove</em></a></div>';
+
+    }
+  });
   $('#fileUploads').html(content)
 }
 
   // End
 // Input Keeper Class
 
+
 function resetProductPhoto(files){
   content = "";
   arr = Array.from(files);
+
   collectInput.productPhoto = Array();
   collectInput.productPhoto.push(...arr);
   console.log(collectInput.productPhoto)
@@ -369,19 +481,22 @@ function resetProductPhoto(files){
   $.each(collectInput.productPhoto, function(index, file){
     content += '<div class="upload">' +
       '<img src="' + file.url + '" alt="logo"  width=100 height=100 style="margin: auto"><br> \
-      <a rel='+index+' onclick="removeSelectedImg(this)" style="cursor:pointer;"><em>remove</em></a></div>';    
+      <a rel='+index+' data-id='+file.id+' onclick="removeSelectedImg(this)" style="cursor:pointer;"><em>remove</em></a></div>';    
   });
   $('#fileUploads').html(content)
 }
 
 function removeSelectedImg(evt){
-  fileId = evt.rel
-  ob = collectInput.productPhoto[fileId]
+  fileIndex = evt.rel;
+  id = evt.getAttribute('data-id');
+  console.log("id", id)
+  ob = collectInput.productPhoto[fileIndex]
   removeImg(ob.deleteUrl)
   removeImg(ob.url)
-  collectInput.productPhoto.splice(fileId, 1)
+  deleteImgFrmDb(id)
+  DbLastImageId()
+  collectInput.productPhoto.splice(fileIndex, 1)
 }
-
 
 function addAProduct(cat) {
   cat["name"] = $("#catVal").val();
@@ -539,9 +654,12 @@ function modalClick(e) {
 $('#productPhoto').fileupload({
     dataType: 'json',
     done: function(e, data){
+
+      console.log(data.result)
       setProductPhoto(data.result.files)
     }
-});  
+});
+
 
 // Delete/Remove Img
 function removeImg(url) {
@@ -549,7 +667,7 @@ function removeImg(url) {
     url: url,
     type: 'DELETE',
     success: function(res) {
-
+      
       resetProductPhoto(Array.from(collectInput.productPhoto))
       console.log("Found", res)
     },
@@ -557,4 +675,38 @@ function removeImg(url) {
       console.log(error);
     }
   });
+}
+
+function postImg(cat) {
+    $.ajax({
+      url: 'http://localhost:3000/image_url/',
+      type: 'POST',
+      data: {
+        name: obj.name,
+        url: obj.url,
+        size: obj.size,
+        type: obj.type
+      }, 
+      success: function(data){
+        console.log("img save to db")
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    })
+    // JQuery code to be added in here.
+}
+
+// Delete
+function deleteImgFrmDb(url) {
+    $.ajax({
+        url: `http://localhost:3000/image_url/${url}`,
+        type: 'DELETE',
+        success: function(res) {
+          console.log('successful')
+        },
+        error: function(error) {
+          console.log(error);
+        }
+    });
 }
