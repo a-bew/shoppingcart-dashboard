@@ -67,8 +67,8 @@ function validateParInput(){
 var catObj = {} 
 
 function reLoad(){
-  	window.location.href = "/admin/categories.html";
-  	window.location.reload = true;
+	window.location.href = "/admin/categories.html";
+ 	window.location.reload = true;
 }
 
 function getCatAttr({target}){
@@ -76,7 +76,7 @@ function getCatAttr({target}){
 }
 
 function postToCat(cat) {
-    cat["name"] = $("#catVal").val();
+     cat["name"] = $("#catVal").val();
 
     var valid = validateParInput()
     
@@ -185,8 +185,7 @@ function editCat(elm) {
 
             //Populate the Pop up  
             setInputForEdit(data)
-            // $('#aBrand').val();
-             
+            // $('#aBrand').val();             
         },
         error: function(error) {
             console.log(error);
@@ -274,6 +273,8 @@ function updateCat(cat){
 	    return false;  	
     }
 }
+
+
 
 // Delete
 function deleteCat(elm) {
