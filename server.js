@@ -6,6 +6,12 @@ const middlewares = jsonServer.defaults()
 const db = require('./db.json');
 const path = require('path')
 const fs = require('fs')
+// const formidable = require('formidable');
+const fetch = require('isomorphic-unfetch');
+// const readChunk = require('read-chunk');
+// const fileType = require('file-type');
+var jqupload = require('jquery-file-upload-middleware');
+
 server.use(middlewares)
 
 // Add custom routes before JSON Server router
@@ -13,7 +19,6 @@ server.get('/echo', (req, res) => {
   res.jsonp(req.query)
 })
 
-var jqupload = require('jquery-file-upload-middleware');
 server.use('/upload', function(req, res, next){
   var now = Date.now();
   jqupload.fileHandler({
@@ -26,6 +31,26 @@ server.use('/upload', function(req, res, next){
   })(req, res, next);
 });
 
+jqupload.on('end', function(fileInfo, req, res){
+	console.log(fileInfo)
+	var s = "";
+	fetch('http://localhost:3000/image_url', {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+	    name: fileInfo.name,
+	    url: fileInfo.url,
+	    size: fileInfo.size,
+	    type: fileInfo.type
+		})
+	}).then(res=>res.json())
+	.then(data=>{s=data;console.log(data)})
+	.catch(error=>console.log(error))
+})
+  
 // remove TmpDir
 server.delete('/uploads/:filename', function(req, res, next){
 	filename = req.params.filename;
