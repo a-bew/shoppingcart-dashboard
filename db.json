@@ -178,11 +178,25 @@
       "category": 13,
       "price": 39.99,
       "list-price": 46,
-      "size": 36,
-      "quantity": 3,
+      "size_qty": "null,36",
       "featured": true,
+      "image_ids": "",
       "sold": 0,
       "description": ""
+    },
+    {
+      "name": "Top-wear",
+      "brand": "1",
+      "category": "1",
+      "price": "23",
+      "list_price": "12",
+      "size_qty": "23:1, 21:2, ",
+      "featured": "false",
+      "sold": "0",
+      "image_ids": "2; ",
+      "description": "Top",
+      "createdAt": 1562343630068,
+      "id": 2
     }
   ],
   "archive": [
@@ -193,12 +207,28 @@
       "category": 13,
       "price": 39.99,
       "list-price": 46,
-      "size": 36,
-      "quantity": 3,
+      "size_qty": "null,36",
       "featured": true,
-      "image_url": [],
+      "image_ids": "",
       "sold": 0,
       "description": ""
+    }
+  ],
+  "image_url": [
+    {
+      "id": 1,
+      "name": "",
+      "url": "",
+      "size": "",
+      "type": ""
+    },
+    {
+      "name": "My Snapshot1.jpg",
+      "url": "http://localhost:3000/uploads/1562343599874/My%20Snapshot1.jpg",
+      "size": 20455,
+      "type": "image/jpeg",
+      "createdAt": 1562343604409,
+      "id": 2
     }
   ]
 }
