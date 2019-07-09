@@ -4,19 +4,19 @@ const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 
-const lodashId = require('lodash-id')
-const low = require('lowdb')
 
 const FileSync = require('lowdb/adapters/FileSync')
+// const lodashId = require('lodash-id')
+// const low = require('lowdb')
+// const adapter = new FileSync('db.json')
+// const db = low(adapter)
+//db._.mixin(lodashId)
 
-const adapter = new FileSync('db.json')
-const db = low(adapter)
 const path = require('path')
 const fs = require('fs')
 const fetch = require('isomorphic-unfetch');
 // const fileType = require('file-type');
 var jqupload = require('jquery-file-upload-middleware');
-//db._.mixin(lodashId)
 
 server.use(middlewares)
 
