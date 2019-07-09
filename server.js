@@ -92,33 +92,6 @@ server.delete('/uploads/:date/:filename', function(req, res, next){
   })
 })
 
-server.use('/archive/:products/:id', function(req, res, next){
-  products = req.params.products
-  ids = req.params.id 
-  console.log(products, ids)
-  var user=db.get(`products[${(ids-1)}]`)
-           .value()   
-  var {id, ...aUser} = user;
-  // Set new Id
-  Id = db.get('archive')
-  .size()
-  .value() + 1
-
-  aUser = {id:Id, ...aUser}
-  
-  // post to Archive
-  const archiveDb = 
-      db.get('archive')
-  const acvDb =  archiveDb.push(aUser)
-        .write()
-  if (acvDb){
-    	res.jsonp(acvDb)
-	} else {
-	    res.sendStatus(404)
-    }
-
-})
-
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser)

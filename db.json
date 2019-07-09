@@ -202,10 +202,9 @@
       "category": "1",
       "price": "23",
       "list_price": "12",
-      "size_qty": "",
-      "featured": "false",
+      "size_qty": "23:2",
       "sold": "0",
-      "image_ids": "",
+      "image_ids": "2",
       "description": "Top",
       "id": 2
     }
@@ -251,6 +250,20 @@
       "image_ids": "",
       "description": "23",
       "createdAt": 1562697388464
+    },
+    {
+      "name": "asd",
+      "brand": "2",
+      "category": "8",
+      "price": "12",
+      "list_price": "23",
+      "size_qty": "12:32,432:12",
+      "featured": "false",
+      "sold": "0",
+      "image_ids": "5",
+      "description": "erew2",
+      "createdAt": 1562702652663,
+      "id": 4
     }
   ],
   "image_url": [
@@ -260,6 +273,38 @@
       "size": "",
       "type": "",
       "id": 1
+    },
+    {
+      "name": "My Snapshot4.jpg",
+      "url": "http://localhost:3000/uploads/1562700607683/My%20Snapshot4.jpg",
+      "size": 36372,
+      "type": "image/jpeg",
+      "createdAt": 1562700612709,
+      "id": 2
+    },
+    {
+      "name": "My Snapshot3.jpg",
+      "url": "http://localhost:3000/uploads/1562700822874/My%20Snapshot3.jpg",
+      "size": 21763,
+      "type": "image/jpeg",
+      "createdAt": 1562700824110,
+      "id": 3
+    },
+    {
+      "name": "My Snapshot1.jpg",
+      "url": "http://localhost:3000/uploads/1562701362545/My%20Snapshot1.jpg",
+      "size": 20455,
+      "type": "image/jpeg",
+      "createdAt": 1562701365617,
+      "id": 4
+    },
+    {
+      "name": "My Snapshot.jpg",
+      "url": "http://localhost:3000/uploads/1562702378077/My%20Snapshot.jpg",
+      "size": 173469,
+      "type": "image/jpeg",
+      "createdAt": 1562702380927,
+      "id": 5
     }
   ]
 }

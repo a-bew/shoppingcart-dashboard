@@ -506,7 +506,7 @@ function addProductToDb(){
   sAndQ = makeStr(sizesAndQtiesPrev, sAndQ)
   pPhoto = makeString(productPhoto, pPhoto)    
   const { childCat:category, listPrice:list_price,  desc:description, sold, brand, title, price}  = productsData; 
-  alert('brand:'+brand+"\ncategory:"+category+"\nlist_price:"+list_price+"\ndescription:"+description+"\ntitle:"+title+"\nsold:"+sold+"\nfeaured:"+true+"\nbrand:"+brand+"\nprice"+price+"\nsAndQ:"+sAndQ+"\npPhoto:"+pPhoto)
+//  alert('brand:'+brand+"\ncategory:"+category+"\nlist_price:"+list_price+"\ndescription:"+description+"\ntitle:"+title+"\nsold:"+sold+"\nfeaured:"+true+"\nbrand:"+brand+"\nprice"+price+"\nsAndQ:"+sAndQ+"\npPhoto:"+pPhoto)
   udata = {
     name: title,
     brand: brand,
@@ -562,7 +562,7 @@ function updateProductDb(){
     sAndQ = makeStr(sizesAndQtiesPrev, sAndQ)
     pPhoto = makeString(productPhoto, pPhoto)    
 
-  alert('brand:'+brand+"\ncategory:"+childCat+"\nlist_price:"+listPrice+"\ndescription:"+desc+"\ntitle:"+title+"\nsold:"+sold+"\nfeaured:"+true+"\nbrand:"+brand+"\nprice"+price+"\nsAndQ:"+sAndQ+"\npPhoto:"+pPhoto)
+//  alert('brand:'+brand+"\ncategory:"+childCat+"\nlist_price:"+listPrice+"\ndescription:"+desc+"\ntitle:"+title+"\nsold:"+sold+"\nfeaured:"+true+"\nbrand:"+brand+"\nprice"+price+"\nsAndQ:"+sAndQ+"\npPhoto:"+pPhoto)
 
   udata = {
     name: title,
@@ -609,46 +609,18 @@ function  cancelEditProduct(){
 //      tagStatus = true;
     }
   }
-
-
-//   console.log(sizesAndQtiesPrev)
-
-//   if (tagStatus){
-//     sAndQ = makeStr(sizesAndQtiesPrev, sAndQ)
-//     pPhoto = makeString(productFotos, pPhoto)    
-  
-// //    alert('brand:'+brand+"\ncategory:"+childCat+"\nlist_price:"+listPrice+"\ndescription:"+desc+"\ntitle:"+title+"\nsold:"+sold+"\nfeaured:"+true+"\nbrand:"+brand+"\nprice"+price+"\nsAndQ:"+sAndQ+"\npPhoto:"+pPhoto)
-
-//     udata = {
-//       name: title,
-//       brand: brand,
-//       category: childCat,
-//       price: price,
-//       list_price: listPrice,
-//       size_qty:  sAndQ,
-//       featured: false,
-//       sold: sold,
-//       image_ids: pPhoto,
-//       description: desc
-//     }
-
-//     setTimeout(cleanUpRedundantImages(udata),2000)    
-
-//   }
-
   window.location.href = "/admin/products.html"
-//  v = window.location.reload = false;
-//  return v
 }
 
-function archiveProduct(id){
+function getProductToArchiv(id){
 
 // Delete
     return $.ajax({
-        url: `/archive/products/${id}`,
-        type: 'POST',
-        success: function(res) {
-          deleteAtProduct(id)
+        url: `/products/${id}`,
+        type: 'GET',
+        success: function(data) {
+          var {id, ...dbdata} = data
+          archiveAProduct(dbdata, id)
           console.log(res)
                 // window.location.href='/admin/categories.html';
                 // window.location.reload=true;                
@@ -659,9 +631,26 @@ function archiveProduct(id){
     });
 }
 
+function archiveAProduct(data, id){
+    return $.ajax({
+        url: `/archive`,
+        type: 'POST',
+        data: data,
+        success: function(res) {
+          deleteAtProduct(id)
+          //console.log(res)
+          window.location.href='/admin/categories.html';
+          window.location.reload=true;                
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+
+}
 function deleteProduct(evt){
   id = evt.rel
-  archiveProduct(id)
+  return getProductToArchiv(id)
 //  setTimeout(deleteAtProduct(id), 2000)
 
 }
