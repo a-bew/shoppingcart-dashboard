@@ -345,7 +345,7 @@ function populateProducts(dict) {
         var id = elm["id"];
              
         content += '<tr>';
-        content += '<td><a rel='+ id +' onclick="showEditProductForm(this)"><span class="fa fa-pencil"></span></a>&nbsp&nbsp<a rel="'+ id +'" onclick="deleteProduct(this)"><span class="fa fa-trash"></span></a></td>';
+        content += '<td><a rel='+ id +' onclick="showEditProductForm(this)"><span class="fa fa-pencil"></span></a>&nbsp&nbsp<a rel='+ id +' onclick="deleteProduct(this)"><span class="fa fa-trash"></span></a></td>';
         content += '<td>' + product + '</td>';
         content += '<td>' + `$${price}` + '</td>';
         content += '<td>' + category + '</td>';
@@ -641,6 +641,49 @@ function  cancelEditProduct(){
 //  return v
 }
 
+function archiveProduct(id){
+
+// Delete
+    return $.ajax({
+        url: `/archive/products/${id}`,
+        type: 'POST',
+        success: function(res) {
+          deleteAtProduct(id)
+          console.log(res)
+                // window.location.href='/admin/categories.html';
+                // window.location.reload=true;                
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+function deleteProduct(evt){
+  id = evt.rel
+  archiveProduct(id)
+//  setTimeout(deleteAtProduct(id), 2000)
+
+}
+
+function deleteAtProduct(id){
+// Delete
+  return $.ajax({
+        url: `/products/${id}`,
+        type: 'DELETE',
+        success: function(res) {
+          console.log(res)
+          window.location.href = "/admin/products.html"
+
+                // window.location.href='/admin/categories.html';
+                // window.location.reload=true;                
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+
+}
 // Submit Edit Product Form
 function  submitAddProduct(){
   // Submission processing method here 
@@ -677,8 +720,27 @@ function makeUpdateProductDb(data){
     })
   // JQuery code to be added in here.
   });   
-
 }
+
+function makeUpdateProductDb(data){
+  selected = localStorage.getItem("updateEditProductId")
+  $(document).ready(function(){
+      $.ajax({
+        url: `http://localhost:3000/products/${selected}`,
+        type: 'PUT',
+        data: data, 
+        success: function(data){
+           console.log(data)
+        },
+        error: function(error) {
+        console.log(error);
+      }
+    })
+  // JQuery code to be added in here.
+  });   
+}
+
+
 // Error Class
   // Start
 function errorClass(){
@@ -720,6 +782,7 @@ function textAreaValidation(){
 var input = function(attr){
   return attr;
 }
+
 var collectInput  = {
  // data
  title: "",
