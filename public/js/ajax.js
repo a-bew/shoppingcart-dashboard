@@ -112,3 +112,23 @@ function productsPageEndPoint(dataSet, apiEndpoint){
     http_request.open("GET", data_file, true);
     http_request.send();
 }
+
+
+function productsEditPageEndPoint(dataSet, apiEndpoint){
+
+   var data_file =  apiEndpoint;
+   var http_request = new XMLHttpRequest();
+   
+   httpCrossBrowser(http_request);
+
+   http_request.onreadystatechange = function(){
+      if (http_request.readyState == 4) {
+        // Javascript function JSON.parse to parse data
+        var jsonObj = JSON.parse(http_request.responseText);
+            dataSet(jsonObj, 5);
+      }
+    } 
+
+    http_request.open("GET", data_file, true);
+    http_request.send();
+}

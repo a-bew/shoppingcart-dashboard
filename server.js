@@ -6,9 +6,7 @@ const middlewares = jsonServer.defaults()
 const db = require('./db.json');
 const path = require('path')
 const fs = require('fs')
-// const formidable = require('formidable');
 const fetch = require('isomorphic-unfetch');
-// const readChunk = require('read-chunk');
 // const fileType = require('file-type');
 var jqupload = require('jquery-file-upload-middleware');
 

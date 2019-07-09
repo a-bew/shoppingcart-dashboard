@@ -53,36 +53,36 @@
       "id": 1
     },
     {
-      "id": 3,
-      "name": "kelvin klein"
+      "name": "kelvin klein",
+      "id": 2
     },
     {
       "name": "Tommy",
-      "id": 5
+      "id": 3
     },
     {
       "name": "diesel",
-      "id": 6
+      "id": 4
     },
     {
       "name": "Element",
-      "id": 7
+      "id": 5
     },
     {
       "name": "Forever 21",
-      "id": 8
+      "id": 6
     },
     {
       "name": "Levi Strauss & Co.",
-      "id": 9
+      "id": 7
     },
     {
       "name": "Moschino",
-      "id": 10
+      "id": 8
     },
     {
       "name": "Nike",
-      "id": 11
+      "id": 9
     }
   ],
   "parent": [
@@ -168,21 +168,33 @@
       "name": "Pants",
       "parent": "1",
       "id": 13
+    },
+    {
+      "name": "Work-kit",
+      "parent": "1",
+      "createdAt": 1562594036438,
+      "id": 14
+    },
+    {
+      "name": "Work-kit",
+      "parent": "2",
+      "createdAt": 1562594051522,
+      "id": 15
     }
   ],
   "products": [
     {
-      "id": 1,
       "name": "Levis Jeans",
-      "brand": 9,
+      "brand": 7,
       "category": 13,
       "price": 39.99,
-      "list-price": 46,
-      "size_qty": "null,36",
+      "list_price": 46,
+      "size_qty": "null:36",
       "featured": true,
       "image_ids": "",
       "sold": 0,
-      "description": ""
+      "description": "",
+      "id": 1
     },
     {
       "name": "Top-wear",
@@ -190,18 +202,41 @@
       "category": "1",
       "price": "23",
       "list_price": "12",
-      "size_qty": "23:1, 21:2, ",
+      "size_qty": "",
       "featured": "false",
       "sold": "0",
-      "image_ids": "2; ",
+      "image_ids": "",
       "description": "Top",
-      "createdAt": 1562343630068,
       "id": 2
+    },
+    {
+      "name": "Hand-glove",
+      "brand": "3",
+      "category": "15",
+      "price": "100",
+      "list_price": "144",
+      "size_qty": "",
+      "featured": "false",
+      "sold": "0",
+      "image_ids": "",
+      "description": "Hand-glove for workplace",
+      "id": 3
+    },
+    {
+      "name": "ig",
+      "brand": "1",
+      "category": "8",
+      "price": "324",
+      "list_price": "12",
+      "size_qty": "12:2,null:1",
+      "sold": "0",
+      "image_ids": "",
+      "description": "sdertfa",
+      "id": 4
     }
   ],
   "archive": [
     {
-      "id": 1,
       "name": "Levis Jeans",
       "brand": 9,
       "category": 13,
@@ -211,24 +246,17 @@
       "featured": true,
       "image_ids": "",
       "sold": 0,
-      "description": ""
+      "description": "",
+      "id": 1
     }
   ],
   "image_url": [
     {
-      "id": 1,
       "name": "",
       "url": "",
       "size": "",
-      "type": ""
-    },
-    {
-      "name": "My Snapshot1.jpg",
-      "url": "http://localhost:3000/uploads/1562343599874/My%20Snapshot1.jpg",
-      "size": 20455,
-      "type": "image/jpeg",
-      "createdAt": 1562343604409,
-      "id": 2
+      "type": "",
+      "id": 1
     }
   ]
 }

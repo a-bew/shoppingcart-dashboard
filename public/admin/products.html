@@ -161,7 +161,6 @@
             <select id="editProductChildCat" name="editProductChildCat" class="form-control selectCat">
               <option value="" disabled selected></option>
             </select>
-
           </div>
 
           <div class="grid">
@@ -175,8 +174,9 @@
           </div>
 
           <div class="grid">
-            <label for="editProductPriceList"><h6>Quantity & Sizes*:</h6></label>
-            <input class="form-control full-95 cat-categories" type="text" id="editProductPriceList" name="editProductPriceList" placeholder="Quantity & Sizes"/>
+            <label for="btnEditProductQtyAndSize"><h6>Quantity & Sizes*:</h6></label>
+            <input id="btnEditProductQtyAndSize" type="button" class="btn btn-default" value="Quantity & Sizes" name="btnEditProductQtyAndSize" id="btnEditProductQtyAndSize" style="border: gray 0.04em solid"; >
+            
           </div>
           <div class="grid">
             <label for="editSizesAndQtiesPrev"><h6>Sizes & Quantities Preview:</h6></label>
@@ -188,17 +188,17 @@
           <div grid>
             <div class="grid">
               <label for="editProductPhoto"><h6>Product Photo:</h6></label>
-              <input class="form-control full-95 cat-categories" type="file" id="editProductPhoto" name="editProductPhoto" />
+              <input class="form-control full-95 cat-categories" type="file" id="editProductPhoto" name="editProductPhoto" required accept="image/*" data-url="/upload" multiple name="photo" />
             </div>            
-            <div class="three-col-add-product"></div>          
+            <div class="three-col-edit-product" id="editFileUploads"></div>          
           </div>
          <div class="grid">
-            <label for="cat-categories"><h6>Description</h6></label>
-            <textarea class="form-control full-95" style="height: 100px;"></textarea>
+            <label for="editProductDesc"><h6>Description</h6></label>
+            <textarea class="form-control full-95" id="editProductDesc" style="height: 100px; "></textarea>
             <div class="row">
               <div class="pull-right">
                 <input type="button" id = "editBtnCancelSubmitProduct" name="editBtnCancelSubmitProduct" class="btn btn-default" value="Cancel">
-                <input type="button" id="editBtnSubmitProduct" name="editBtnSubmitProduct" class="btn btn-success"  value="Submit"> 
+                <input type="button" id="editBtnSubmitProduct" name="editBtnSubmitProduct" class="btn btn-success"  value="Update"> 
              </div>              
             </div>
          </div>
