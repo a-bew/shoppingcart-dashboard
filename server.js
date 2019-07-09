@@ -3,12 +3,20 @@ const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
-const db = require('./db.json');
+
+const lodashId = require('lodash-id')
+const low = require('lowdb')
+
+const FileSync = require('lowdb/adapters/FileSync')
+
+const adapter = new FileSync('db.json')
+const db = low(adapter)
 const path = require('path')
 const fs = require('fs')
 const fetch = require('isomorphic-unfetch');
 // const fileType = require('file-type');
 var jqupload = require('jquery-file-upload-middleware');
+//db._.mixin(lodashId)
 
 server.use(middlewares)
 
@@ -82,6 +90,33 @@ server.delete('/uploads/:date/:filename', function(req, res, next){
   console.log("File deleted successfully!");
   res.status(200).json({success: true});
   })
+})
+
+server.use('/archive/:products/:id', function(req, res, next){
+  products = req.params.products
+  ids = req.params.id 
+  console.log(products, ids)
+  var user=db.get(`products[${(ids-1)}]`)
+           .value()   
+  var {id, ...aUser} = user;
+  // Set new Id
+  Id = db.get('archive')
+  .size()
+  .value() + 1
+
+  aUser = {id:Id, ...aUser}
+  
+  // post to Archive
+  const archiveDb = 
+      db.get('archive')
+  const acvDb =  archiveDb.push(aUser)
+        .write()
+  if (acvDb){
+    	res.jsonp(acvDb)
+	} else {
+	    res.sendStatus(404)
+    }
+
 })
 
 // To handle POST, PUT and PATCH you need to use a body-parser
