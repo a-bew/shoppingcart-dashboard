@@ -73,14 +73,15 @@ function populateArchive(dict) {
 }
 
 function getArchivProductImgId(id){
-
+ 
 // Delete
+// 
     return $.ajax({
         url: `/archive/${id}`,
         type: 'GET',
         success: function({ image_ids }) {
           console.log(image_ids)
-          deleteImgFrmDb(image_ids)
+          deleteImgFromDb(image_ids)
           deleteProductItemInAchive(id)
 
                 // window.location.href='/admin/categories.html';
@@ -92,7 +93,26 @@ function getArchivProductImgId(id){
     });
 }
 
-function deleteImgFrmDb(imgIds){
+function getImage(id){
+
+// Delete
+    return $.ajax({
+        url: `/image_url/${id}`,
+        type: 'GET',
+        success: function({ url }) {
+
+          deleteImgFrmDb(url)
+
+          var url = `http://localhost:3000/image_url/${id}`
+          deleteImgFrmDb(url)
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+function deleteImgFromDb(imgIds){
     // displaying images
 
     if (imgIds){
@@ -100,15 +120,17 @@ function deleteImgFrmDb(imgIds){
       ids = imgIds.split(";")
 
       ids.forEach(function(id){
-        deleteImgFrmDb(id)
+        getImage(id)
+        
       })	
     }
 }
 
 function deleteProductInArchive(evt){
-  // get product images data
-  // delete images from source
-  // delete product items from db
+  // get product images data That is, image ID(1,2,3)
+  // get image Id details and retrieve image url
+  // delete images from source(say with url)
+  // delete archive product items from db with (id)
 
   id = evt.rel
   getArchivProductImgId(id)
@@ -134,9 +156,11 @@ function deleteProductItemInAchive(id){
 }
 
 // Delete
-function deleteImgFrmDb(id) {
+function deleteImgFrmDb(url) {
     $.ajax({
-        url: `http://localhost:3000/image_url/${id}`,
+    	url: url,
+
+//        url: `http://localhost:3000/image_url/${id}`,
         type: 'DELETE',
         success: function(res) {
           console.log('successful')

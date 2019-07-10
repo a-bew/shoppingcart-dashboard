@@ -587,6 +587,7 @@ function updateProductDb(){
   window.location.href = "/admin/products.html"
 
 }
+
 function  cancelEditProduct(){
   // Submission processing method here
   document.querySelector("#products-list-table").classList.remove("hide");   

@@ -222,48 +222,6 @@
       "sold": 0,
       "description": "",
       "id": 1
-    },
-    {
-      "id": 2,
-      "name": "sdf",
-      "brand": "2",
-      "category": "2",
-      "price": "34",
-      "list_price": "23",
-      "size_qty": "23:2",
-      "featured": "false",
-      "sold": "0",
-      "image_ids": "",
-      "description": "232",
-      "createdAt": 1562695549827
-    },
-    {
-      "id": 3,
-      "name": "sdf",
-      "brand": "2",
-      "category": "9",
-      "price": "12",
-      "list_price": "2",
-      "size_qty": "23:3",
-      "featured": "false",
-      "sold": "0",
-      "image_ids": "",
-      "description": "23",
-      "createdAt": 1562697388464
-    },
-    {
-      "name": "asd",
-      "brand": "2",
-      "category": "8",
-      "price": "12",
-      "list_price": "23",
-      "size_qty": "12:32,432:12",
-      "featured": "false",
-      "sold": "0",
-      "image_ids": "",
-      "description": "erew2",
-      "createdAt": 1562702652663,
-      "id": 4
     }
   ],
   "image_url": [
@@ -273,38 +231,6 @@
       "size": "",
       "type": "",
       "id": 1
-    },
-    {
-      "name": "My Snapshot4.jpg",
-      "url": "http://localhost:3000/uploads/1562700607683/My%20Snapshot4.jpg",
-      "size": 36372,
-      "type": "image/jpeg",
-      "createdAt": 1562700612709,
-      "id": 2
-    },
-    {
-      "name": "My Snapshot3.jpg",
-      "url": "http://localhost:3000/uploads/1562700822874/My%20Snapshot3.jpg",
-      "size": 21763,
-      "type": "image/jpeg",
-      "createdAt": 1562700824110,
-      "id": 3
-    },
-    {
-      "name": "My Snapshot1.jpg",
-      "url": "http://localhost:3000/uploads/1562701362545/My%20Snapshot1.jpg",
-      "size": 20455,
-      "type": "image/jpeg",
-      "createdAt": 1562701365617,
-      "id": 4
-    },
-    {
-      "name": "My Snapshot.jpg",
-      "url": "http://localhost:3000/uploads/1562702378077/My%20Snapshot.jpg",
-      "size": 173469,
-      "type": "image/jpeg",
-      "createdAt": 1562702380927,
-      "id": 5
     }
   ]
 }
