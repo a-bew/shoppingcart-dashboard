@@ -6,10 +6,10 @@ const middlewares = jsonServer.defaults()
 
 
 const FileSync = require('lowdb/adapters/FileSync')
-// const lodashId = require('lodash-id')
-// const low = require('lowdb')
-// const adapter = new FileSync('db.json')
-// const db = low(adapter)
+const lodashId = require('lodash-id')
+const low = require('lowdb')
+const adapter = new FileSync('db.json')
+const db = low(adapter)
 //db._.mixin(lodashId)
 
 const path = require('path')
@@ -68,6 +68,29 @@ server.delete('/uploads/:filename', function(req, res, next){
     console.log("File deleted successfully!");
 	res.status(200).json({success: true});
   });
+})
+
+server.use('/updates/lastlogin/:id', function(req, res, next){
+	id = req.params.id;
+	console.log(id)
+    object = db.get('users')
+    	  .find({ id: +id})
+	      .value()
+
+    console.log(object)
+
+	user = db.get('users')
+	  .find({last_login: object.last_login})
+	  .assign({ last_login: Date.now()})
+	  .write()
+
+	if (!user) {
+	  return console.error(user);
+	}
+
+//	db.setState(db.getState())
+	res.status(200).json({success: true});
+
 })
 
 // remove file
