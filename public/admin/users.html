@@ -22,16 +22,22 @@
           		<li class=""><a href="../admin/products.html">Products</a></li>
           		<li class=""><a href="../admin/archive.html">Archived</a></li>
                 <li class=""><a href="../admin/users.html">Users</a></li>
-          		<li class=""><a href="#">Hello Adetola</a></li>              
+          		<li class="">
+                <select style="border: none;">
+                  <option value="Hello Adetola">Hello Adetola</option>
+                  <option><a href="../admin/change-password.html">Change Password</a></option>
+                  <option>Logout</option>
+              </select>
+              </li>              
           	</ul>          	
           </nav> 
               <!-- Clear float -->
 	          <div class="clr"></div>
-    <div id="products-list-table">
+    <div id="users-list-table">
 
       <div class="top-margin-20 text-center" style="position: relative;">
       	<h2>Users</h2>
-         	       <input id="btnAddProduct" class="btn btn-success" value="Add User" style="position: absolute; right: 5px; top: 0px;">   	
+           	       <input id="btnAddUser" class="btn btn-success" value="Add User" style="position: absolute; right: 5px; top: 0px;">   	
       </div>
 
     <div class="container top-margin-20">
@@ -46,6 +52,51 @@
     </div>
   </div>
 </main>
+
+  <!-- Add A User -->
+
+    <div id="add-users" class="container top-margin-20 hide">
+      <div class="text-center" style="position: relative;">
+        <h2>Add A User</h2>
+      </div>
+          <form id="container-add-user-form" class="grid-qty-size  container top-margin-20" method="post" >
+       <div id="container-add-user" > <!-- upper layer -->
+            <div class=" two-col-add-product">
+              <div class="grid panel-body-panel">
+                <label for="user-fname"><h6>Full-name*:</h6></label>
+                <input type="text" class="form-control cat-categories" type="text" id="user-fname" name="user-fname" placeholder="Full-name" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="user-email"><h6>Email*:</h6></label>
+                <input type="email" class="form-control cat-categories" id="user-email" name="user-email" placeholder="Email" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="user-password"><h6>Password*:</h6></label>
+                <input type="password" class="form-control cat-categories" id="user-password" name="user-password" placeholder="Password" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="user-confirm-password"><h6>Confirmed Password*:</h6></label>
+                <input type="password" class="form-control cat-categories" id="user-confirm-password" name="user-confirm-password" placeholder="Confirm password" />
+              </div>
+              <div class="grid panel-body-panel">
+                <label for="user-permission"><h6>Permission*:</h6></label>
+                <select class="form-control cat-categories" id="user-permission" name="user-permission"/>
+                  <option value="" disabled selected></option>
+                  <option value="1">Admin</option>
+                  <option value="2">Editor</option>
+                </select> 
+              </div>
+              </div>
+                <div class="margin-20 two-col-add-product">
+                    <input type="button" id="btnCancelAddUser" name="cancel-add-user-btn" class="btn btn-success btn-block col-sm-12 col-md-12 btnCancelAddUser" value="Cancel" style="letter-spacing: 1.6px; font-weight: bold;">
+                  
+                    <input type="button" id="btnSubmitAddUser" name="add-user-btn" class="btn btn-success btn-block col-sm-12 col-md-12 btnSubmitAddUser" value="Submit" style="letter-spacing: 1.6px; font-weight: bold;">
+                  
+               </div>
+            </div>
+          </form>
+
+    </div>
 
 
     <script src='../js/jquery.js'></script>
