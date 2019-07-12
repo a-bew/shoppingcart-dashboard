@@ -4,27 +4,27 @@ function utilityLoginInAdmin(){
   $("#btnSubmit").click(apiData);
 }
 
-
 function Userdetails(){
-  this.username = $('input#admin_username').val(),
+  this.email = $('input#admin_email').val(),
   this.password = $('input#admin_password').val()
 }
 
-const loginToAdminHome = function(dict){
+const loginToAdminHome = (dict)=>{
   var [userType, user] = [dict["1"], dict["2"]]
-  username = new Userdetails().username
-  password = new Userdetails().password
+  var email = new Userdetails().email
+  var password = new Userdetails().password
   user.forEach((elm, index)=>{
-	 if (elm["username"] === username && elm["password"] === password){
-	 	type = userType[elm["user-type"]-1].name
-        // console.log(elm["username"], elm["password"], type)
-	    localStorage.setItem('Userid', elm.id);
-	 	return goToAdminHome(type);
-	 }
+  	if (elm["email"] === email && elm["password"] === password){
+  	 	type = userType[elm["user_type"]-1].name
+      // console.log(elm["username"], elm["password"], type)
+  	  localStorage.setItem('Userid', elm.id);
+      return updateLastLogin(elm.id, type)
+  	}
   })
 }
 
 const goToAdminHome = function(uiLocation){
+    var uiLocation = "admin"
     window.location.href = `http://localhost:3000/${uiLocation}/index.html`;
     window.location.reload = true;
 }
@@ -44,5 +44,23 @@ const apiData = ()=>{
     loginEndPoint(obj, `http://localhost:3000/user-type`);    
 	// Populate .select-year-from
     loginEndPoint(obj, `http://localhost:3000/users`);
+}
+
+function updateLastLogin(id, type){
+    $.ajax({
+        url: `updates/lastlogin/${id}`,
+        data: {
+            last_login: Date.now(),
+            id: id
+        },
+        dataType: 'json', 
+        type: 'PUT',
+        success: function(data) {
+          goToAdminHome(type)
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
 }
 
