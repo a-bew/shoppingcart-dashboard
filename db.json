@@ -2,23 +2,31 @@
   "users": [
     {
       "id": 1,
-      "user-type": 1,
-      "username": "Adetola",
+      "fullname": "Adetola Bewaji",
+      "user_type": 1,
       "email": "adetola013@gmail.com",
-      "join-date": "",
-      "last-login": "",
-      "password": "12345",
-      "profile": 1
+      "join_date": "",
+      "last_login": 1562945000224,
+      "password": "12345"
     },
     {
       "id": 2,
-      "user-type": 2,
-      "username": "Emmanuel",
+      "user_type": 2,
+      "fullname": "Emmanuel Adegoke",
       "email": "emma@gmail.com",
-      "join-date": "",
-      "last-login": "",
-      "password": "01234",
-      "profile": 2
+      "join_date": "",
+      "last_login": 1562945025134,
+      "password": "01234"
+    },
+    {
+      "fullname": "John",
+      "email": "adetola013@gmail.com",
+      "password": "11111",
+      "confirm_password": "11111",
+      "user_type": "1",
+      "join_date": "1562933258630",
+      "createdAt": 1562933259601,
+      "id": 3
     }
   ],
   "user-type": [
@@ -33,18 +41,6 @@
     {
       "id": 3,
       "name": "public"
-    }
-  ],
-  "profile": [
-    {
-      "id": 1,
-      "firstname": "Adetola",
-      "lastname": "Bewaji",
-      "age": 31,
-      "country": "Nigeria",
-      "state": "Lagos",
-      "occupation": "programmer",
-      "address": "08, Nke-nike Street, off-custom bus-stop, Abaranje Road, Ikotun, Lagos"
     }
   ],
   "brands": [
