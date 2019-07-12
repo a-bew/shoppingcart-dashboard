@@ -756,6 +756,11 @@ nav li{
 	margin-top:  40px; 
 }
 
+.margin-20{
+  margin-top:20px;
+  margin-bottom: 20px; 
+}
+
 .add-a-brand-control{
     margin: 40px auto; 
     width: 50%;
