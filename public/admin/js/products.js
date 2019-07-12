@@ -5,8 +5,7 @@ function productFunc(){
   
   //  Image Length - To track the last json db image id
   DbLastImageId()
-  
- 
+   
   // $("#productPhoto").change(function(event){ collectInput.setProductPhoto(event)});
 }
 
@@ -324,34 +323,34 @@ function populateProducts(dict) {
   var noteBreak = false
   console.log(getLength)
   $.each(products, function(index, elm) {
-  	    console.log(categories);
-  	    var value = elm["category"]-1
-        // console.log(categories[value]["parent"]-1, parents)
-        try{
-          var cat = categories[elm["category"]-1]["name"];
-        } catch(e) {
-           window.location.href = 'http://localhost:3000/admin/products.html'
-        }
-          
-        var catIndex = eval(categories[eval(elm["category"]-1)]["parent"]-1)
-        var parent = parents[categories[elm["category"]-1]["parent"]-1]["name"];
+	    console.log(categories);
+	    var value = elm["category"]-1
+      // console.log(categories[value]["parent"]-1, parents)
+      try{
+        var cat = categories[elm["category"]-1]["name"];
+      } catch(e) {
+         window.location.href = 'http://localhost:3000/admin/products.html'
+      }
+        
+      var catIndex = eval(categories[eval(elm["category"]-1)]["parent"]-1)
+      var parent = parents[categories[elm["category"]-1]["parent"]-1]["name"];
 
-        var product = elm["name"];
-        var price = elm["price"];
-        var category = `${parent}-${cat}`;
-        var featured = elm.featured;
-        var sold = elm.sold;
+      var product = elm["name"];
+      var price = elm["price"];
+      var category = `${parent}-${cat}`;
+      var featured = elm.featured;
+      var sold = elm.sold;
 
-        var id = elm["id"];
-             
-        content += '<tr>';
-        content += '<td><a rel='+ id +' onclick="showEditProductForm(this)"><span class="fa fa-pencil"></span></a>&nbsp&nbsp<a rel='+ id +' onclick="deleteProduct(this)"><span class="fa fa-trash"></span></a></td>';
-        content += '<td>' + product + '</td>';
-        content += '<td>' + `$${price}` + '</td>';
-        content += '<td>' + category + '</td>';
-        content += '<td ><div class="row"><a data-featured="true" class="col-sm-20" onclick="isFeatured(this)"><strong>+&nbsp&nbsp</strong></a><span class="col-sm-80"></span></div></td>';
-        content += '<td>' + sold + '</td>';
-        content += '</tr>';    
+      var id = elm["id"];
+           
+      content += '<tr>';
+      content += '<td><a rel='+ id +' onclick="showEditProductForm(this)"><span class="fa fa-pencil"></span></a>&nbsp&nbsp<a rel='+ id +' onclick="deleteProduct(this)"><span class="fa fa-archive"></span></a> </td>';
+      content += '<td>' + product + '</td>';
+      content += '<td>' + `$${price}` + '</td>';
+      content += '<td>' + category + '</td>';
+      content += '<td ><div class="row"><a data-featured="true" class="col-sm-20" onclick="isFeatured(this)"><strong>+&nbsp&nbsp</strong></a><span class="col-sm-80"></span></div></td>';
+      content += '<td>' + sold + '</td>';
+      content += '</tr>';    
 
     })
     // if (getLength){
@@ -434,36 +433,6 @@ function showAddProductForm(){
 
 }
 
-function locateBaseUrl(){
-   if (navigationType() == 1 || navigationType() == 2){
-      getHref = window.location.href;
-      getHref = getHref.split("");
-      v = getHref.splice(getHref.indexOf("?"), getHref.length)
-      console.log(getHref.join(), v, )
-      getHref = getHref.join("");
-      if (getHref.endsWith("l")){
-        window.location.href = getHref;
-      }
-   }  
-}
-
-function navigationType(){
-  var result;
-  var p;
-  if (window.performance.navigation){
-    result = window.performance.navigation;
-    if (result=225){result=4}
-  }
-
-  if (window.performance.getEntriesByType("navigation")){
-    p = window.performance.getEntriesByType("navigation")[0].type;
-    if (p=='navigate'){result=0}
-    if (p=='reload'){result=1}
-    if (p=='back_forward'){result=2}
-    if (p=='prerender'){result=3}
-  }
-  return result;
-}
 
 // Submit Add Product Form
 function  submitAddProduct(){
