@@ -94,6 +94,26 @@ function loginEndPoint(dataSet, apiEndpoint){
     http_request.send();
 }
 
+function adminDetails(dataSet, apiEndpoint){
+
+   var data_file =  apiEndpoint;
+   var http_request = new XMLHttpRequest();
+   
+   httpCrossBrowser(http_request);
+
+   http_request.onreadystatechange = function(){
+      if (http_request.readyState == 4) {
+        // Javascript function JSON.parse to parse data
+        var jsonObj = JSON.parse(http_request.responseText);
+
+            dataSet(jsonObj, 3);
+      }
+    } 
+
+    http_request.open("GET", data_file, true);
+    http_request.send();
+}
+
 function productsPageEndPoint(dataSet, apiEndpoint){
 
    var data_file =  apiEndpoint;
@@ -131,4 +151,37 @@ function productsEditPageEndPoint(dataSet, apiEndpoint){
 
     http_request.open("GET", data_file, true);
     http_request.send();
+}
+
+
+// General
+function navigationType(){
+  var result;
+  var p;
+  if (window.performance.navigation){
+    result = window.performance.navigation;
+    if (result=225){result=4}
+  }
+
+  if (window.performance.getEntriesByType("navigation")){
+    p = window.performance.getEntriesByType("navigation")[0].type;
+    if (p=='navigate'){result=0}
+    if (p=='reload'){result=1}
+    if (p=='back_forward'){result=2}
+    if (p=='prerender'){result=3}
+  }
+  return result;
+}
+
+function locateBaseUrl(){
+   if (navigationType() == 1 || navigationType() == 2){
+      getHref = window.location.href;
+      getHref = getHref.split("");
+      v = getHref.splice(getHref.indexOf("?"), getHref.length)
+      console.log(getHref.join(), v, )
+      getHref = getHref.join("");
+      if (getHref.endsWith("l")){
+        window.location.href = getHref;
+      }
+   }  
 }
