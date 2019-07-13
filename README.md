@@ -9,14 +9,17 @@
 2. Json-server 
    - npm install --save-dev json-server
 
-3. Start app@console
-   - node server.js
+3. Nodemon 
+   - npm install -g nodemon
 
-4. port@3000
+4. Start app@console
+   - npm run dev
+
+5. port@3000
    - http://localhost:3000
 
-5. Default login details
-   - username: Adetola
+6. Default login details
+   - email: adetola013@gmail.com
    - password: 12345
 
 ## Thank you message
