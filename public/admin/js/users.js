@@ -43,11 +43,13 @@ function populateUsers(dict) {
 
     var email = elm["email"];
     
-    var join_date = new Date(+elm["join_date"]).toDateString();
-      var last_login = new Date(+elm["last_login"]).toDateString();
-    if (join_date == "Invalid Date"){
+    join = new Date(+elm["join_date"])
+    last = new Date(+elm["last_login"])
+    var join_date = join.toDateString()+" "+join.toLocaleTimeString();
+      var last_login = last.toDateString()+" "+last.toLocaleTimeString();
+    if (join_date == "Invalid Date Invalid Date"){
       join_date = "Never"
-    } else if (last_login  == "Invalid Date"){
+    } else if (last_login  == "Invalid Date Invalid Date"){
       last_login = "Never"
     }
 //    var permission = elm["user_type"];
@@ -55,7 +57,7 @@ function populateUsers(dict) {
 
 
     content += '<tr>';
-    content += '<td><a rel='+ id +' onclick="deleteProduct(this)"><span class="fa fa-trash"></span></a></td>';
+    content += '<td><a rel='+ id +' onclick="deleteUserAcct(this)"><span class="fa fa-trash"></span></a></td>';
     content += '<td>' + name + '</td>';
     content += '<td>' + email + '</td>';
     content += '<td>' + join_date + '</td>';
@@ -154,7 +156,7 @@ function submitAddUser(){
   } 
 }
 
-function CancelAddUser(){
+function cancelAddUser(){
   outputInputs.apply(data_collector(clear=true), [])  
   window.location.href = "http://localhost:3000/admin/users.html"
 }
@@ -210,3 +212,17 @@ function apiUsersData(){
 
 }
 
+// Delete
+function deleteUserAcct({ rel }) {
+    $.ajax({
+        url: `http://localhost:3000/users/${rel}`,
+        type: 'DELETE',
+        success: function(res) {
+          window.location.href = "http://localhost:3000/admin/users.html"
+          console.log('successful')
+        },
+        error: function(error) {
+          console.log(error);
+        }
+    });
+}

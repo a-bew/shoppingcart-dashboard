@@ -15,18 +15,8 @@
       "fullname": "Emmanuel Adegoke",
       "email": "emma@gmail.com",
       "join_date": "",
-      "last_login": 1562945025134,
+      "last_login": 1562989515448,
       "password": "01234"
-    },
-    {
-      "fullname": "John",
-      "email": "adetola013@gmail.com",
-      "password": "11111",
-      "confirm_password": "11111",
-      "user_type": "1",
-      "join_date": "1562933258630",
-      "createdAt": 1562933259601,
-      "id": 3
     }
   ],
   "user-type": [
