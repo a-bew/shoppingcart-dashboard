@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,10 +13,12 @@
   "devDependencies": {
     "json-server": "^0.15.0"
   },
+
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
     "jquery-file-upload-middleware": "^0.1.8",
     "lodash-id": "^0.14.0",
     "lowdb": "^1.0.0"
   }
+
 }
