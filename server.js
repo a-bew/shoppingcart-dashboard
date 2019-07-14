@@ -70,7 +70,7 @@ server.delete('/uploads/:filename', function(req, res, next){
   });
 })
 
-server.use('/updates/lastlogin/:id', function(req, res, next){
+server.use('/updates/user/lastlogin/:id', function(req, res, next){
 	id = req.params.id;
 	console.log(id)
     object = db.get('users')
@@ -91,6 +91,27 @@ server.use('/updates/lastlogin/:id', function(req, res, next){
 //	db.setState(db.getState())
 	res.status(200).json({success: true});
 
+})
+
+server.use('/updates/user/:id/:password', function(req, res, next){
+	id = req.params.id;
+    password = req.params.password;
+
+    object = db.get('users')
+   	  .find({ id: +id})
+      .value()
+
+	user = db.get('users')
+	  .find({password: object.password})
+	  .assign({ password: password})
+	  .write()
+
+	if (!user) {
+	  return console.error(user);
+	}
+
+//	db.setState(db.getState())
+	res.status(200).json({success: true});
 })
 
 // remove file

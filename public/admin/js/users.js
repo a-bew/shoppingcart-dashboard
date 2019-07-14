@@ -80,15 +80,13 @@ function getUserView(){
 function addUserEvents(){
   document.querySelector("#btnSubmitAddUser").addEventListener("click", function(event){ event.preventDefault(); submitAddUser()});
   document.querySelector("#btnCancelAddUser").addEventListener("click", function(event){ event.preventDefault(); cancelAddUser()});
-
   outputInputs.apply(data_collector(true), [])
 }
 
 function fill(classV, clear_fill){
     if (clear_fill){
-      document.querySelector(classV).value = "";
-//      console.log("cleared", document.querySelector(classV).value)
-
+    const clear = "";
+    document.querySelector(classV).value = clear;
     } else {
       if (classV == "#user-permission"){
     	elm = document.querySelector(classV);
@@ -195,7 +193,7 @@ function apiUsersData(){
 
   if (addUser=="hide"){
 
-    // Add Product Events
+    // Add User Events
     addUserEvents() 
     toogleUserView(tableUser, addUser)
       

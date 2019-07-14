@@ -48,7 +48,7 @@ const apiData = ()=>{
 
 function updateLastLogin(id, type){
     $.ajax({
-        url: `updates/lastlogin/${id}`,
+        url: `updates/user/lastlogin/${id}`,
         data: {
             last_login: Date.now(),
             id: id

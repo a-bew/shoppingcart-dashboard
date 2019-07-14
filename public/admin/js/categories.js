@@ -204,10 +204,10 @@ function setInputForEdit(data){
   
   // Title 
   $("h5.h5-cat-title").html("Edit Category");
-  
-  var content = '<input id="btnUpdateCat" class="btn btn-primary full-22" value="Update Category">&nbsp&nbsp'
-  content +='<input id="btnCancelCat" class="btn btn-default full-10" value="Cancel">'  
-  
+  var content = '<div class="panel-body-panel btn-add-cat">'
+  content += '<input id="btnUpdateCat" class="btn btn-primary" value="Update Category">&nbsp&nbsp'
+  content +='<input id="btnCancelCat" class="btn btn-default" value="Cancel">'  
+  content += '</div>'
   // Btn
   $('.btn-add-cat').html(content);
 
@@ -224,14 +224,18 @@ function setInputForEdit(data){
 function cancelUpdate(){
 	var content = "";
 	content += '<h5 class="h5-cat-title"> Add A Category</h5>';
+    content += '<div class="grid panel-body-panel">'
     content += '<label for="cat-parent"><h6>Parent</h6></label>';
-    content += '<select id="setParent" name="selectCat" class="selectCat">';
+    content += '<select id="setParent" name="selectCat" class="form-control selectCat">';
     content += '<option value="" disabled selected>Please select an option</option>';
     content += '</select>';
+    content += '</div>'
+    content += '<div class="grid panel-body-panel">'
     content += '<label for="cat-categories"><h6>Category</h6></label>'
-    content += '<input class="form-control full-95 cat-categories" type="text" id="catVal" name="catVal" placeholder="Category"/>';
-    content += '<div class="btn-add-cat">';
-    content += '<input id="btnSubmitCat" class="btn btn-primary full-20" value="Add a category">';          
+    content += '<input class="form-control selectCat" type="text" id="catVal" name="catVal" placeholder="Category"/>';
+    content += '</div>'
+    content += '<div class="panel-body-panel btn-add-cat">';
+    content += '<input id="btnSubmitCat" class="btn btn-primary" value="Add a category">';          
     content += '</div>';
 
     $(".grid").html(content);

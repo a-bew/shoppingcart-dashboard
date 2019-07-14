@@ -16,14 +16,21 @@
 	            </ul>     			
      		</nav>
           <nav class="col-sm-10 nav-text-center">
-          	<ul class="navbar">
-          		<li class=""><a href="../admin/brand.html">Brand</a></li>
-          		<li class=""><a href="../admin/categories.html">Categories</a></li>
-          		<li class=""><a href="../admin/products.html">Products</a></li>
-          		<li class=""><a href="../admin/archive.html">Archived</a></li>
-                <li class=""><a href="../admin/users.html">Users</a></li>
-          		<li class=""><a href="#">Hello Adetola</a></li>              
-          	</ul>          	
+            <ul class="navbar">
+              <li class=""><a href="../admin/brand.html">Brand</a></li>
+              <li class=""><a href="../admin/categories.html">Categories</a></li>
+              <li class=""><a href="../admin/products.html">Products</a></li>
+              <li class=""><a href="../admin/archive.html">Archived</a></li>
+              <li class=""><a href="../admin/users.html">Users</a></li>
+              <li class="dropdown">
+
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello Adetola<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="../admin/change-password.html">Change Password</a></li>
+                  <li><a href="">Logout</a></li>                    
+                </ul>
+              </li>              
+            </ul>           
           </nav> 
               <!-- Clear float -->
 	          <div class="clr"></div>
@@ -337,6 +344,8 @@
     </div>
 
     <script src='../js/jquery.js'></script>
+    <script src='../js/bootstrap.min.js'></script>
+
     <script src='../vendor/jqfu/js/jquery.ui.widget.js'></script>
     <script src='../vendor/jqfu/js/jquery.iframe-transport.js'></script>
     <script src='../vendor/jqfu/js/jquery.fileupload.js'></script>
