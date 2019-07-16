@@ -1,11 +1,18 @@
 {
-  "name": "shoppingcartdashboard",
+  "name": "shoppingcart-dashboard",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start":"node server.js",
-    "start: dev": "cross-env NODE_ENV=production nodemon server.js"
+    "client-install": "npm install --prefix client",
+    "start":"cross-env NODE_ENV=production node server.js",
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run server\"",
+    "start: dev": "cross-env NODE_ENV=production nodemon --exec node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-bew/shoppingcart-dashboard.git"
   },
   "keywords": [],
   "author": "",
