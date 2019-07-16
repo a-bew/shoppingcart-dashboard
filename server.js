@@ -148,6 +148,6 @@ server.use((req, res, next) => {
 })
 
 server.use(router)
-server.listen(3000, () => {
+server.listen(4000, () => {
   console.log('JSON Server is running')
 })
