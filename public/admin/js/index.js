@@ -13,17 +13,6 @@ function adminusers(dict) {
 
         type = permission[elm["user_type"]-1]["name"];
         fname = elm.fullname;
-        // try {
-            // firstname = profile[elm["profile"]-1].firstname;
-            // lastname = profile[elm["profile"]-1].lastname;
-            //fname = `${firstname} ${lastname}`;
-
-            // index = elm["profile"]-1
-            // profile.splice(index, 1)   // remove spotted index value 
-
-        // } catch (e){
-        //     var fname = elm.username;    
-        // }
              
         tableContent += '<tr>';
         tableContent += '<td><a href="#" class="linkshowuser" rel="' + elm.id + '">' + fname + '</a></td>';
@@ -35,6 +24,8 @@ function adminusers(dict) {
     });
 
     $('#adminUsers table tbody').append(tableContent);
+    // Extra for setting Admin Name
+    getUserName()
 
 }
 
@@ -50,10 +41,11 @@ const obj = (param, r)=>{
 }
 
 const apiAdminData = ()=>{
-  if (!localStorage.getItem("Userid")) return
+    loading()
     //Populate user-type
-    adminDetails(obj, `http://localhost:3000/user-type`);    
+    
+    adminDetails(obj, `/user-type`);    
     // Populate users
-    adminDetails(obj, `http://localhost:3000/users`);
+    adminDetails(obj, `/users`);
 }
 

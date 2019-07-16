@@ -10,14 +10,19 @@ dict = {};
 var i=1;
 
 function apiArchiveData(){
+	loading();
+
 	//Populate 
-	productsPageEndPoint(objArchive, `http://localhost:3000/archive`);    
+	productsPageEndPoint(objArchive, `/archive`);    
 
 	// Populate parent
-	productsPageEndPoint(objArchive, `http://localhost:3000/parent`);
+	productsPageEndPoint(objArchive, `/parent`);
 
 	// Populate users
-	productsPageEndPoint(objArchive, `http://localhost:3000/categories`);	
+	productsPageEndPoint(objArchive, `/categories`);	
+
+    getUserName()
+
 }
 
 const objArchive = (param, r)=>{
@@ -41,7 +46,10 @@ function populateArchive(dict) {
         try{
           var cat = categories[elm["category"]-1]["name"];
         } catch(e) {
-           window.location.href = 'http://localhost:3000/admin/archive.html'
+           var path={
+            linkpage:"admin/archive"
+           } 
+           navigatePage.call(path);
         }
           
         var catIndex = eval(categories[eval(elm["category"]-1)]["parent"]-1)
@@ -65,9 +73,6 @@ function populateArchive(dict) {
         content += '</tr>';    
 
     })
-    // if (getLength){
-    //   window.location.href = 'http://localhost:3000/admin/products.html'
-    // }
     $('#adminArchive table tbody').append(content);
     dict = {};
 }
@@ -103,7 +108,7 @@ function getImage(id){
 
           deleteImgFrmDb(url)
 
-          var url = `http://localhost:3000/image_url/${id}`
+          var url = `/image_url/${id}`
           deleteImgFrmDb(url)
         },
         error: function(error) {
@@ -144,10 +149,10 @@ function deleteProductItemInAchive(id){
         type: 'DELETE',
         success: function(res) {
           console.log(res)
-          window.location.href = "/admin/archive.html"
-
-                // window.location.href='/admin/categories.html';
-                // window.location.reload=true;                
+           var path={
+            linkpage:"admin/archive"
+           } 
+           navigatePage.call(path);
         },
         error: function(error) {
             console.log(error);
@@ -159,8 +164,6 @@ function deleteProductItemInAchive(id){
 function deleteImgFrmDb(url) {
     $.ajax({
     	url: url,
-
-//        url: `http://localhost:3000/image_url/${id}`,
         type: 'DELETE',
         success: function(res) {
           console.log('successful')

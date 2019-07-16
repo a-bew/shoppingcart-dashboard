@@ -8,7 +8,6 @@ function fill(classV, clear_fill){
   if (clear_fill){
     const clear = "";
     document.querySelector(classV).value = clear;
-//      console.log("cleared", document.querySelector(classV).value)
   } else {
     return document.querySelector(classV).value         
   } 
@@ -46,6 +45,8 @@ function changePass(pass){
 }
 
 function validatePassword(){
+  loading.call({msg:"You are not logged in"})
+
   const pass = outputInputs.call(data_collector(false))  
   const changepass = changePass(pass)
   const error = errorChecker(pass)
@@ -65,13 +66,12 @@ function validatePassword(){
   $(document).ready(function(){
     const userId = localStorage.getItem("Userid")
     $.ajax({
-      url: `http://localhost:3000/users/${userId}`,
+      url: `/users/${userId}`,
       type: 'GET',
       success: function(data){
         const pass = outputInputs.call(data_collector(false))  
         const { oldPassword, password } = pass;
         if (data.password === oldPassword){
-          alert("Passed")
           submitChangePassword(password)
         } else{
           alert("Invalid password")
@@ -91,13 +91,16 @@ function submitChangePassword(passcode){
 
   $(document).ready(function(){
     $.ajax({
-      url: `http://localhost:3000/updates/user/${userId}/${passcode}`,
+      url: `/updates/user/${userId}/${passcode}`,
       type: 'PUT',
       data: {
         password:passcode
       },
       success: function(data){
-        window.location.href = "http://localhost:3000/admin/users.html"
+       var path={
+        linkpage:"admin/users"
+       } 
+       navigatePage.call(path);
       },
       error: function(error) {
         console.log(error);
@@ -107,12 +110,8 @@ function submitChangePassword(passcode){
 
 }
 
-// function cancelAddUser(){
-//   outputInputs.call(data_collector(clear=true))  
-//   window.location.href = "http://localhost:3000/admin/users.html"
-// }
-
 function addChangePassEvents(){
   document.querySelector("#btnSubmitChangePassword").addEventListener("click", function(event){ event.preventDefault(); validatePassword()});
   outputInputs.call(data_collector(true))
+  getUserName()
 }

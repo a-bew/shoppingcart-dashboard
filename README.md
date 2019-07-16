@@ -10,7 +10,7 @@
    - npm install --save-dev json-server
 
 3. Nodemon 
-   - npm install -g nodemon
+   - npm install --save-dev nodemon
 
 4. Start app@console
    - npm run dev

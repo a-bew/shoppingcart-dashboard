@@ -6660,6 +6660,9 @@ nav li{
 }
 
 @media (min-width: 765px) {
+  .set-form-edit-width{
+    width: 50%;
+  }
 
 	nav ul{
 		display: inline;
@@ -6727,6 +6730,7 @@ form.grid{
 /* Admin Brands */
 .panel-body-panel{
     margin: 10px; 
+
 
 }
 

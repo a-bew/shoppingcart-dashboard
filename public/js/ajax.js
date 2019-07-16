@@ -185,3 +185,69 @@ function locateBaseUrl(){
       }
    }  
 }
+
+
+function getUserName(){
+    if (!localStorage.getItem("Userid")){
+     document.querySelector("#hello-world").textContent = `Hello, World`          
+      return
+    }
+    rel = localStorage.getItem("Userid")
+    $.ajax({
+        url: `/users/${rel}`,
+        type: 'GET',
+        success: function({ fullname }) {
+          name = fullname.split(' ');
+          document.querySelector("#hello-world").textContent = `Welcome, ${name.split(",")[0]}`          
+        },
+        error: function(error) {
+          console.log(error);
+        }
+    });
+
+}
+
+function navigatePage(){
+  if (!this.linkpage){
+    window.location.href = `/`;
+    window.location.reload = true;
+
+    return;
+  }
+  if (this.extra){
+    window.location.href = `/${this.linkpage}.html${this.extra}`
+    window.location.reload = true;
+
+    return
+  }
+  window.location.href = `/${this.linkpage}.html`
+  window.location.reload = true;
+
+}
+
+function logout(evt){
+//  evt.preventDefault();
+  localStorage.removeItem("Userid") 
+   var path={
+    linkpage:""
+   } 
+   navigatePage.call(path);
+}
+
+//page404
+function loading(){
+  if (!localStorage.getItem("Userid")) {
+     var path={
+      linkpage:`404`
+     } 
+     if (this.msg){
+       alert(this.msg)  
+       return
+     }
+
+    navigatePage.call(path);
+    return
+  }
+}
+
+

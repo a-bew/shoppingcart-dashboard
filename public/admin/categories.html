@@ -25,10 +25,10 @@
               <li class=""><a href="../admin/users.html">Users</a></li>
               <li class="dropdown">
 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello Adetola<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="hello-world"></span><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="../admin/change-password.html">Change Password</a></li>
-                  <li><a href="">Logout</a></li>                    
+                  <li><a onclick="logout(this)" style="cursor: pointer;">Logout</a></li>                    
                 </ul>
               </li>              
             </ul>           
@@ -50,7 +50,7 @@
             <div class="grid panel-body-panel">
 
               <label for="cat-parent"><h6>Parent</h6></label>
-              <select id="setParent" name="selectCat" class="form-control selectCat">
+              <select id="setParent" name="setParent" class="form-control selectCat">
                 <option value="" disabled selected>Please select an option</option>
               </select>
             </div>

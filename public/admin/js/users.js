@@ -1,8 +1,7 @@
 window.onload = usersFunc;
 
 function usersFunc(){
-  setTimeout(apiUsersData(), 0); 
-  // $("#productPhoto").change(function(event){ collectInput.setProductPhoto(event)});
+  apiUsersData(); 
 }
 
 // populateUsers
@@ -23,21 +22,6 @@ function populateUsers(dict) {
   var content = "";
   $.each(user, function(index, elm) {
 
-    // try {
-
-     //    firstname = profile[elm["profile"]-1].firstname;
-     //    lastname = profile[elm["profile"]-1].lastname;
-     //    name = `${firstname} ${lastname}`;
-
-     //    index = elm["profile"]-1
-     //    profile.splice(index, 1)   // remove spotted index value 
-
-	    // console.log(permit)
-
-    // } catch (e){
-    //     var name = elm.username;    
-    // }
-
     var name = elm.fullname
     var permission = permit[elm["user_type"]-1]["name"];
 
@@ -52,10 +36,7 @@ function populateUsers(dict) {
     } else if (last_login  == "Invalid Date Invalid Date"){
       last_login = "Never"
     }
-//    var permission = elm["user_type"];
     var id = elm["id"];
-
-
     content += '<tr>';
     content += '<td><a rel='+ id +' onclick="deleteUserAcct(this)"><span class="fa fa-trash"></span></a></td>';
     content += '<td>' + name + '</td>';
@@ -100,7 +81,11 @@ $('#btnAddUser').on('click', showAddUserForm);
 
 function showAddUserForm(){
    console.log("whatup")
-   window.location.href = "/admin/users.html?add=1"
+   var path={
+   	linkpage:"admin/users",
+   	extra:"?add=1"
+   } 
+   navigatePage.call(path);
    window.location.reload = false;
    localStorage.setItem("addUserClass", "hide");
 }
@@ -140,12 +125,15 @@ function submitAddUser(){
   if (!error>0){
     $(document).ready(function(){
         $.ajax({
-          url: 'http://localhost:3000/users/',
+          url: '/users',
           type: 'POST',
           data: addUser, 
           success: function(data){
-          	window.location.href = "http://localhost:3000/admin/users.html"
-          },
+		   var path={
+		   	linkpage:`admin/users`
+		   } 
+		   navigatePage.call(path)
+		},
           error: function(error) {
           console.log(error);
         }
@@ -156,7 +144,10 @@ function submitAddUser(){
 
 function cancelAddUser(){
   outputInputs.apply(data_collector(clear=true), [])  
-  window.location.href = "http://localhost:3000/admin/users.html"
+   var path={
+   	linkpage:`admin/users`
+   } 
+   navigatePage.call(path);
 }
 
 function toogleUserView(tableUser, addUser){
@@ -175,10 +166,9 @@ function toogleUserView(tableUser, addUser){
   }
 }
 
+
 function apiUsersData(){
-
-  if (!localStorage.getItem("Userid")) return
-
+  loading()
   var [tableUser, addUser] = getUserView()
 
   // initializing localStorage items to "reset"
@@ -199,11 +189,13 @@ function apiUsersData(){
       
   } else if (tableUser == "hide"){
 
-    adminDetails(obj, `http://localhost:3000/user-type`);    
+    adminDetails(obj, `/user-type`);    
     // Populate users
-    adminDetails(obj, `http://localhost:3000/users`);
+    adminDetails(obj, `/users`);
  
   }
+
+  getUserName()
 
   localStorage.setItem("userTableClass", "reset");
   localStorage.setItem("addUserClass", "reset");
@@ -213,10 +205,13 @@ function apiUsersData(){
 // Delete
 function deleteUserAcct({ rel }) {
     $.ajax({
-        url: `http://localhost:3000/users/${rel}`,
+        url: `/users/${rel}`,
         type: 'DELETE',
         success: function(res) {
-          window.location.href = "http://localhost:3000/admin/users.html"
+		   var path={
+		   	linkpage:`admin/users`
+		   } 
+		   navigatePage.call(path);
           console.log('successful')
         },
         error: function(error) {

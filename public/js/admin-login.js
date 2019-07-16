@@ -1,6 +1,9 @@
 window.onload = utilityLoginInAdmin;
 
 function utilityLoginInAdmin(){
+
+  resetLocal() 
+
   $("#btnSubmit").click(apiData);
 }
 
@@ -19,14 +22,21 @@ const loginToAdminHome = (dict)=>{
       // console.log(elm["username"], elm["password"], type)
   	  localStorage.setItem('Userid', elm.id);
       return updateLastLogin(elm.id, type)
-  	}
+  	} else {
+       var path={
+        linkpage:""
+       } 
+       navigatePage.call(path);
+    }
   })
 }
 
 const goToAdminHome = function(uiLocation){
-    var uiLocation = "admin"
-    window.location.href = `http://localhost:3000/${uiLocation}/index.html`;
-    window.location.reload = true;
+    var uiLocation = "admin/index"
+         var path={
+      linkpage:`${uiLocation}`
+     } 
+     navigatePage.call(path);
 }
 
 dict = {};
@@ -41,14 +51,14 @@ const obj = (param, r)=>{
 
 const apiData = ()=>{
     //Populate .select-make
-    loginEndPoint(obj, `http://localhost:3000/user-type`);    
+    loginEndPoint(obj, `/user-type`);    
 	// Populate .select-year-from
-    loginEndPoint(obj, `http://localhost:3000/users`);
+    loginEndPoint(obj, `/users`);
 }
 
 function updateLastLogin(id, type){
     $.ajax({
-        url: `updates/user/lastlogin/${id}`,
+        url: `/updates/user/lastlogin/${id}`,
         data: {
             last_login: Date.now(),
             id: id
@@ -62,5 +72,9 @@ function updateLastLogin(id, type){
             console.log(error);
         }
     });
+}
+
+function resetLocal(){
+  localStorage.removeItem("Userid")
 }
 

@@ -5,8 +5,6 @@ function productFunc(){
   
   //  Image Length - To track the last json db image id
   DbLastImageId()
-   
-  // $("#productPhoto").change(function(event){ collectInput.setProductPhoto(event)});
 }
 
 // populateProducts
@@ -96,7 +94,7 @@ function editProductEvents(){
 
 function apiProductData(){
 
-  if (!localStorage.getItem("Userid")) return
+  loading()
 
   var [tablePro, addPro, editPro] = getProductView()
 
@@ -140,18 +138,17 @@ function apiProductData(){
     var editProductId = localStorage.getItem("updateEditProductId");
 
     //Populate 
-    productsEditPageEndPoint(objEditProduct, `http://localhost:3000/products/${editProductId}`);    
+    productsEditPageEndPoint(objEditProduct, `/products/${editProductId}`);    
 
     // Populate parent
-    productsEditPageEndPoint(objEditProduct, `http://localhost:3000/brands`);
+    productsEditPageEndPoint(objEditProduct, `/brands`);
 
     // Populate users
-    productsEditPageEndPoint(objEditProduct, `http://localhost:3000/categories`);
+    productsEditPageEndPoint(objEditProduct, `/categories`);
 
-    productsEditPageEndPoint(objEditProduct, `http://localhost:3000/image_url`);
+    productsEditPageEndPoint(objEditProduct, `/image_url`);
 
     toogleProductView(tablePro, addPro, editPro)
-
 
   } else if (tablePro == "hide"){
     // Turn off display photo Id
@@ -159,15 +156,16 @@ function apiProductData(){
     localStorage.setItem("productChidId", null)
 
     //Populate 
-    productsPageEndPoint(objProduct, `http://localhost:3000/products`);    
+    productsPageEndPoint(objProduct, `/products`);    
 
     // Populate parent
-    productsPageEndPoint(objProduct, `http://localhost:3000/parent`);
+    productsPageEndPoint(objProduct, `/parent`);
 
     // Populate users
-    productsPageEndPoint(objProduct, `http://localhost:3000/categories`);
+    productsPageEndPoint(objProduct, `/categories`);
 
   }
+  getUserName()
 
   localStorage.setItem("productTableClass", "reset");
   localStorage.setItem("addProductClass", "reset");
@@ -198,7 +196,12 @@ function populateEditProducts(dict){
     // This is a check 
 
     if (!result){
-      window.location.href = "http://localhost:3000/admin/products.html"
+
+     var path={
+      linkpage:"admin/products"
+     } 
+     navigatePage.call(path);
+
     }
     
     // selected Parent
@@ -251,7 +254,10 @@ function populateEditProducts(dict){
    console.log(collectInput)
   } catch(e) {
     // This is another check 
-    window.location.href = "http://localhost:3000/admin/products.html"
+   var path={
+    linkpage:"admin/products"
+   } 
+   navigatePage.call(path);
   }
   dict = {};
 }
@@ -290,9 +296,6 @@ function inputQtiesPrevForm(list, sqId){
     }
     
   })
-//      collectQandS.push(item)
-
-//  collectInput.sizesAndQtiesPrev = collectQandS;
 }
 
 function getSpecificCategoriesByIter(categories, id, category){
@@ -329,7 +332,10 @@ function populateProducts(dict) {
       try{
         var cat = categories[elm["category"]-1]["name"];
       } catch(e) {
-         window.location.href = 'http://localhost:3000/admin/products.html'
+     var path={
+      linkpage:"admin/products"
+     } 
+     navigatePage.call(path);
       }
         
       var catIndex = eval(categories[eval(elm["category"]-1)]["parent"]-1)
@@ -353,9 +359,7 @@ function populateProducts(dict) {
       content += '</tr>';    
 
     })
-    // if (getLength){
-    //   window.location.href = 'http://localhost:3000/admin/products.html'
-    // }
+
     $('#adminProducts table tbody').append(content);
     dict = {};
 }
@@ -388,7 +392,7 @@ $('#editBtnCancelSubmitProduct').on('click', cancelEditProduct);
 function DbLastImageId(){
     $(document).ready(function(){
         $.ajax({
-          url: `http://localhost:3000/image_url`,
+          url: `/image_url`,
           type: 'GET', 
           success: function(data){
             localStorage.setItem("trackImageId", data.length);
@@ -406,8 +410,11 @@ function showEditProductForm(evt){
     productId = evt.rel
 
     localStorage.setItem("updateEditProductId", productId)
-
-    window.location.href = "/admin/products.html?edit=1"
+     var path={
+      linkpage:"admin/products",
+      extra:"?edit=1"
+     } 
+     navigatePage.call(path);
     window.location.reload = false;
 
     localStorage.setItem("editProductClass", "hide");
@@ -420,8 +427,12 @@ function showEditProductForm(evt){
 }
 
 function showAddProductForm(){
-   
-    window.location.href = "/admin/products.html?add=1"
+     var path={
+      linkpage:"admin/products",
+      extra:"?add=1"
+     } 
+     navigatePage.call(path);
+
     window.location.reload = false;
 
     localStorage.setItem("addProductClass", "hide");
@@ -450,7 +461,10 @@ function  submitAddProduct(){
   apiProductData(); 
   document.querySelector("#products-list-table").classList.remove("hide");   
   document.querySelector("#add-product").classList.add("hide");  
-  window.location.href = "/admin/products.html"
+   var path={
+    linkpage:"admin/products"
+   } 
+   navigatePage.call(path);
 
 }
 
@@ -494,7 +508,7 @@ function addProductToDb(){
 function addProductEndpoint(udata){
   $(document).ready(function(){
       $.ajax({
-        url: 'http://localhost:3000/products/',
+        url: '/products',
         type: 'POST',
         data: udata,
         success: function(data){
@@ -512,7 +526,10 @@ function  cancelAddProduct(){
   // Submission processing method here
   document.querySelector("#products-list-table").classList.remove("hide");   
   document.querySelector("#add-product").classList.add("hide");    
-  window.location.href = "/admin/products.html"
+   var path={
+    linkpage:"admin/products"
+   } 
+   navigatePage.call(path);
 
   v = window.location.reload = false;
   return v
@@ -553,7 +570,10 @@ function updateProductDb(){
   document.querySelector("#edit-product").classList.remove("hide");    
   document.querySelector("#edit-product").classList.add("hide");    
 
-  window.location.href = "/admin/products.html"
+   var path={
+    linkpage:"admin/products"
+   } 
+   navigatePage.call(path);
 
 }
 
@@ -579,7 +599,11 @@ function  cancelEditProduct(){
 //      tagStatus = true;
     }
   }
-  window.location.href = "/admin/products.html"
+
+   var path={
+    linkpage:"admin/products"
+   } 
+   navigatePage.call(path);
 }
 
 function getProductToArchiv(id){
@@ -609,7 +633,10 @@ function archiveAProduct(data, id){
         success: function(res) {
           deleteAtProduct(id)
           //console.log(res)
-          window.location.href='/admin/categories.html';
+         var path={
+          linkpage:"admin/categories"
+         } 
+         navigatePage.call(path);
           window.location.reload=true;                
         },
         error: function(error) {
@@ -632,7 +659,10 @@ function deleteAtProduct(id){
         type: 'DELETE',
         success: function(res) {
           console.log(res)
-          window.location.href = "/admin/products.html"
+         var path={
+          linkpage:"admin/products"
+         } 
+         navigatePage.call(path);
 
                 // window.location.href='/admin/categories.html';
                 // window.location.reload=true;                
@@ -659,7 +689,10 @@ function  submitAddProduct(){
   apiProductData(); 
   document.querySelector("#products-list-table").classList.remove("hide");   
   document.querySelector("#add-product").classList.add("hide");  
-  window.location.href = "/admin/products.html"
+   var path={
+    linkpage:"admin/products"
+   } 
+   navigatePage.call(path);
 
 }
 
@@ -667,7 +700,7 @@ function makeUpdateProductDb(data){
   selected = localStorage.getItem("updateEditProductId")
   $(document).ready(function(){
       $.ajax({
-        url: `http://localhost:3000/products/${selected}`,
+        url: `/products/${selected}`,
         type: 'PUT',
         data: data, 
         success: function(data){
@@ -685,7 +718,7 @@ function makeUpdateProductDb(data){
   selected = localStorage.getItem("updateEditProductId")
   $(document).ready(function(){
       $.ajax({
-        url: `http://localhost:3000/products/${selected}`,
+        url: `/products/${selected}`,
         type: 'PUT',
         data: data, 
         success: function(data){
@@ -943,7 +976,7 @@ function addAProduct(cat) {
    
     $(document).ready(function(){
         $.ajax({
-          url: 'http://localhost:3000/products/',
+          url: '/products',
           type: 'POST',
           data: {
             name: cat.name,
@@ -970,7 +1003,7 @@ function getBrands(htmlElementId) {
     console.log("seen")
     $(document).ready(function(){
         $.ajax({
-          url: 'http://localhost:3000/brands/',
+          url: '/brands/',
           type: 'GET', 
           success: function(data){
             optionsParent(data, htmlElementId)
@@ -988,7 +1021,7 @@ function getSpecificCategories(catChildId, id) {
     console.log("specific")
     $(document).ready(function(){
         $.ajax({
-          url: `http://localhost:3000/categories?parent=${id}`,
+          url: `/categories?parent=${id}`,
           type: 'GET', 
           success: function(data){
             console.log("success")
@@ -1010,7 +1043,7 @@ function getParentCategory(htmlElementId) {
 
     $(document).ready(function(){
         $.ajax({
-          url: 'http://localhost:3000/parent/',
+          url: '/parent/',
           type: 'GET', 
           success: function(data){
             optionsParent(data, htmlElementId)
@@ -1127,7 +1160,7 @@ function removeImg(url) {
 
 function postImg(cat) {
     $.ajax({
-      url: 'http://localhost:3000/image_url/',
+      url: '/image_url/',
       type: 'POST',
       data: {
         name: obj.name,
@@ -1148,7 +1181,7 @@ function postImg(cat) {
 // Delete
 function deleteImgFrmDb(id) {
     $.ajax({
-        url: `http://localhost:3000/image_url/${id}`,
+        url: `/image_url/${id}`,
         type: 'DELETE',
         success: function(res) {
           console.log('successful')

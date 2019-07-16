@@ -3,6 +3,8 @@ window.onload = brandFunc;
 function brandFunc(){
   addBrandInput(label="Add A Brand", buttonClck="addBrand", btnLabel="Add a Brand")
   getbrands()
+  getUserName()
+
 }
 
 function addBrandInput(label, buttonClck, btnLabel, value){
@@ -25,7 +27,7 @@ function addBrandInput(label, buttonClck, btnLabel, value){
 }
 
 function brands(data) {
-    if (!localStorage.getItem("Userid")) return
+    loading()
     console.log(data)
     var brandsObj = data;
     var content = '';
@@ -50,7 +52,7 @@ function brands(data) {
 function getbrands() {
     $(document).ready(function(){
         $.ajax({
-          url: 'http://localhost:3000/brands/',
+          url: '/brands',
           type: 'GET', 
           success: function(data){
             brands(data)
@@ -75,14 +77,18 @@ function addBrand(){
   var error = brandValidation();
   if (!error){
 	    $.ajax({
-	        url: 'http://localhost:3000/brands',
+	        url: '/brands',
 	        data: {
 	            name: $('#aBrand').val(),
 	        },
 	        dataType: 'json',
 	        type: 'POST',
 	        success: function(data) {
-	            window.location.href="/admin/brand.html";
+             var path={
+              linkpage:"admin/brand"
+             } 
+             navigatePage.call(path);
+
 	            window.location.reload=true;
 	        },
 	        error: function(error) {
@@ -99,7 +105,7 @@ function edit(elm) {
 //	console.log(elm)
     localStorage.setItem('brandId',$(elm).attr('data-id'));
     $.ajax({
-        url: `http://localhost:3000/brands/${$(elm).attr("data-id")}`,
+        url: `/brands/${$(elm).attr("data-id")}`,
         type: 'GET',
         success: function(data) {
             //Populate the Pop up        
@@ -125,8 +131,11 @@ function updateBrand(){
         dataType: 'json', 
         type: 'PUT',
         success: function(data) {
-            window.location.href='/admin/brand.html'
-            window.location.reload=true;
+           var path={
+            linkpage:"admin/brand"
+           } 
+           navigatePage.call(path);
+           window.location.reload=true;
         },
         error: function(error) {
             console.log(error);
@@ -141,8 +150,10 @@ function brandDelete(elm) {
         url: `/brands/${$(elm).attr('data-id')}`,
         type: 'DELETE',
         success: function(res) {
-                window.location.href='/admin/brand.html';
-                window.location.reload=true;                
+             var path={
+              linkpage:"admin/brand"
+             } 
+             navigatePage.call(path);
         },
         error: function(error) {
             console.log(error);

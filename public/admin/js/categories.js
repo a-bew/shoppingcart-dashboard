@@ -13,6 +13,8 @@ function catFunc(argument) {
   // post submitCategoriesData
   document.querySelector("#btnSubmitCat").addEventListener("click", function(){postToCat(catObj)});
 
+  getUserName()
+
 }
 
 // Populate Parent
@@ -21,7 +23,7 @@ function getParentCategories() {
 
     $(document).ready(function(){
         $.ajax({
-          url: 'http://localhost:3000/parent/',
+          url: '/parent/',
           type: 'GET', 
           success: function(data){
             optionsParent(data)
@@ -42,20 +44,6 @@ const optionsParent = function(table) {
 	$("#setParent").append(optionElem);
 }
 
-// const submitCategoriesData = function(cat){
-//   var valid = validateParInput()
-//   console.log(cat, valid, "==")
-//   if (cat && valid){
-//     // postToPar();      
-//     postToCat(cat)
-//   } else {
-//     alert('Please fill in all fields');
-//     return false;  	
-//   }
-// }
-
-// validate cat/parent input data
-
 function validateParInput(){
   var errorCount = 0;
   var value = $('#catVal').val();
@@ -67,8 +55,10 @@ function validateParInput(){
 var catObj = {} 
 
 function reLoad(){
-	window.location.href = "/admin/categories.html";
- 	window.location.reload = true;
+   var path={
+    linkpage:"admin/categories",
+   } 
+   navigatePage.call(path);
 }
 
 function getCatAttr({target}){
@@ -84,7 +74,7 @@ function postToCat(cat) {
    
 	    $(document).ready(function(){
 	        $.ajax({
-	          url: 'http://localhost:3000/categories/',
+	          url: '/categories/',
 	          type: 'POST',
 	          data: {
 	          	name: cat.name,
@@ -121,11 +111,12 @@ const objCat = (param, r)=>{
 }
 
 function apiCatData(){
-  if (!localStorage.getItem("Userid")) return
+  loading()
+
   //Populate 
-  accessEndPoint(objCat, `http://localhost:3000/parent`);    
+  accessEndPoint(objCat, `/parent`);    
   // Populate users
-  accessEndPoint(objCat, `http://localhost:3000/categories`);
+  accessEndPoint(objCat, `/categories`);
 }
 
 function populateCat(dict) {
@@ -179,7 +170,7 @@ function editCat(elm) {
     id = $(elm).attr('data-id')
     localStorage.setItem('cataId', id);
     $.ajax({
-        url: `http://localhost:3000/categories/${id}`,
+        url: `/categories/${id}`,
         type: 'GET',
         success: function(data) {
 
@@ -286,7 +277,11 @@ function deleteCat(elm) {
         url: `/categories/${$(elm).attr('data-id')}`,
         type: 'DELETE',
         success: function(res) {
-                window.location.href='/admin/categories.html';
+           var path={
+            linkpage:"admin/categories"
+           } 
+           navigatePage.call(path);
+
                 window.location.reload=true;                
         },
         error: function(error) {
