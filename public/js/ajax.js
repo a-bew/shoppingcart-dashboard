@@ -209,18 +209,18 @@ function getUserName(){
 
 function navigatePage(){
   if (!this.linkpage){
-    window.location.href = `/`;
+    window.location.href = `http://localhost:3000`;
     window.location.reload = true;
 
     return;
   }
   if (this.extra){
-    window.location.href = `/${this.linkpage}.html${this.extra}`
+    window.location.href = `http://localhost:3000/${this.linkpage}.html${this.extra}`
     window.location.reload = true;
 
     return
   }
-  window.location.href = `/${this.linkpage}.html`
+  window.location.href = `http://localhost:3000/${this.linkpage}.html`
   window.location.reload = true;
 
 }
