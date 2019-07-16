@@ -20,7 +20,7 @@
 
 6. Default login details
    - email: adetola013@gmail.com
-   - password: 12345
+   - password: 11111
 
 ## Thank you message
    Thank you for your interest.
