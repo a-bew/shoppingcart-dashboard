@@ -8,6 +8,7 @@
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others \"npm run server\""
   },
+
   "repository": {
     "type": "git",
     "url": ""
@@ -15,10 +16,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+
   "devDependencies": {
     "json-server": "^0.15.0",
     "nodemon": "^1.19.1"
   },
+
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
     "jquery-file-upload-middleware": "^0.1.8",
