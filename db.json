@@ -1,0 +1,222 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullname": "Adetola Bewaji",
+      "user_type": 1,
+      "email": "adetola013@gmail.com",
+      "join_date": "",
+      "last_login": 1563317752202,
+      "password": "11111"
+    },
+    {
+      "id": 2,
+      "user_type": 2,
+      "fullname": "Emmanuel Adegoke",
+      "email": "emma@gmail.com",
+      "join_date": "",
+      "last_login": 1563293372419,
+      "password": "01234"
+    }
+  ],
+  "user-type": [
+    {
+      "id": 1,
+      "name": "admin"
+    },
+    {
+      "id": 2,
+      "name": "editor"
+    },
+    {
+      "id": 3,
+      "name": "public"
+    }
+  ],
+  "brands": [
+    {
+      "name": "Adidas",
+      "id": 1
+    },
+    {
+      "name": "kelvin klein",
+      "id": 2
+    },
+    {
+      "name": "Tommy",
+      "id": 3
+    },
+    {
+      "name": "diesel",
+      "id": 4
+    },
+    {
+      "name": "Element",
+      "id": 5
+    },
+    {
+      "name": "Forever 21",
+      "id": 6
+    },
+    {
+      "name": "Levi Strauss & Co.",
+      "id": 7
+    },
+    {
+      "name": "Moschino",
+      "id": 8
+    },
+    {
+      "name": "Nike",
+      "id": 9
+    }
+  ],
+  "parent": [
+    {
+      "id": 1,
+      "name": "Men"
+    },
+    {
+      "id": 2,
+      "name": "Women"
+    },
+    {
+      "id": 3,
+      "name": "Boys"
+    },
+    {
+      "id": 4,
+      "name": "Girls"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Shirts",
+      "parent": "1",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "parent": 2,
+      "name": "Blouse"
+    },
+    {
+      "id": 3,
+      "parent": 3,
+      "name": "Pen"
+    },
+    {
+      "id": 4,
+      "parent": 4,
+      "name": "Eraser"
+    },
+    {
+      "id": 5,
+      "parent": 4,
+      "name": "Pencil"
+    },
+    {
+      "id": 6,
+      "parent": 1,
+      "name": "Shoes"
+    },
+    {
+      "name": "Vest",
+      "parent": "3",
+      "id": 7
+    },
+    {
+      "name": "Undies",
+      "parent": "2",
+      "id": 8
+    },
+    {
+      "name": "Trousers",
+      "parent": "1",
+      "id": 9
+    },
+    {
+      "name": "Wrist-watch",
+      "parent": "1",
+      "id": 10
+    },
+    {
+      "name": "Wrist-watch",
+      "parent": "2",
+      "id": 11
+    },
+    {
+      "name": "Socks",
+      "parent": "4",
+      "id": 12
+    },
+    {
+      "name": "Pants",
+      "parent": "1",
+      "id": 13
+    },
+    {
+      "name": "Work-kit",
+      "parent": "1",
+      "createdAt": 1562594036438,
+      "id": 14
+    },
+    {
+      "name": "Work-kit",
+      "parent": "2",
+      "createdAt": 1562594051522,
+      "id": 15
+    }
+  ],
+  "products": [
+    {
+      "name": "Levis Jeans",
+      "brand": 7,
+      "category": 13,
+      "price": 39.99,
+      "list_price": 46,
+      "size_qty": "null:36",
+      "featured": true,
+      "image_ids": "",
+      "sold": 0,
+      "description": "",
+      "id": 1
+    },
+    {
+      "name": "Top-wear",
+      "brand": "1",
+      "category": "1",
+      "price": "23",
+      "list_price": "12",
+      "size_qty": "23:2",
+      "sold": "0",
+      "image_ids": "",
+      "description": "Top",
+      "id": 2
+    }
+  ],
+  "archive": [
+    {
+      "name": "Levis Jeans",
+      "brand": 9,
+      "category": 13,
+      "price": 39.99,
+      "list-price": 46,
+      "size_qty": "null,36",
+      "featured": true,
+      "image_ids": "",
+      "sold": 0,
+      "description": "",
+      "id": 1
+    }
+  ],
+  "image_url": [
+    {
+      "name": "",
+      "url": "",
+      "size": "",
+      "type": "",
+      "id": 1
+    }
+  ]
+}
