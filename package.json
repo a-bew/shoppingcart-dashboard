@@ -4,9 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "dev": "npm run server"
+    "dev": "nodemon server/Index.js",
+    "start": "NODE_ENV=production node server/index.js"
   },
 
   "repository": {
