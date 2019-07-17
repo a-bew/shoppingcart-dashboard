@@ -8,7 +8,8 @@
     "server-prod": "node app.js",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others \"npm run server\"",
+
+    "dev": "concurrently --kill-others \"npm run server\""
   },
 
   "repository": {
