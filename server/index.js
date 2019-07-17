@@ -3,6 +3,7 @@ const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
+const port = process.env.PORT || 3000;
 
 
 const FileSync = require('lowdb/adapters/FileSync')
@@ -15,6 +16,7 @@ const db = low(adapter)
 const path = require('path')
 const fs = require('fs')
 const fetch = require('isomorphic-unfetch');
+
 // const fileType = require('file-type');
 var jqupload = require('jquery-file-upload-middleware');
 
@@ -148,6 +150,6 @@ server.use((req, res, next) => {
 })
 
 server.use(router)
-server.listen(4000, () => {
+server.listen(port, () => {
   console.log('JSON Server is running')
 })
