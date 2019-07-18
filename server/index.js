@@ -42,7 +42,7 @@ server.use('/upload', function(req, res, next){
 jqupload.on('end', function(fileInfo, req, res){
 	console.log(fileInfo)
 	var s = "";
-	fetch('http://localhost:3000/image_url', {
+	fetch('http://localhost:3000/api/image_url', {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
