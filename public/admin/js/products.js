@@ -138,15 +138,15 @@ function apiProductData(){
     var editProductId = localStorage.getItem("updateEditProductId");
 
     //Populate 
-    productsEditPageEndPoint(objEditProduct, `/products/${editProductId}`);    
+    productsEditPageEndPoint(objEditProduct, `/api/products/${editProductId}`);    
 
     // Populate parent
-    productsEditPageEndPoint(objEditProduct, `/brands`);
+    productsEditPageEndPoint(objEditProduct, `/api/brands`);
 
     // Populate users
-    productsEditPageEndPoint(objEditProduct, `/categories`);
+    productsEditPageEndPoint(objEditProduct, `/api/categories`);
 
-    productsEditPageEndPoint(objEditProduct, `/image_url`);
+    productsEditPageEndPoint(objEditProduct, `/api/image_url`);
 
     toogleProductView(tablePro, addPro, editPro)
 
@@ -156,13 +156,13 @@ function apiProductData(){
     localStorage.setItem("productChidId", null)
 
     //Populate 
-    productsPageEndPoint(objProduct, `/products`);    
+    productsPageEndPoint(objProduct, `/api/products`);    
 
     // Populate parent
-    productsPageEndPoint(objProduct, `/parent`);
+    productsPageEndPoint(objProduct, `/api/parent`);
 
     // Populate users
-    productsPageEndPoint(objProduct, `/categories`);
+    productsPageEndPoint(objProduct, `/api/categories`);
 
   }
   getUserName()
@@ -392,7 +392,7 @@ $('#editBtnCancelSubmitProduct').on('click', cancelEditProduct);
 function DbLastImageId(){
     $(document).ready(function(){
         $.ajax({
-          url: `/image_url`,
+          url: `/api/image_url`,
           type: 'GET', 
           success: function(data){
             localStorage.setItem("trackImageId", data.length);
@@ -508,7 +508,7 @@ function addProductToDb(){
 function addProductEndpoint(udata){
   $(document).ready(function(){
       $.ajax({
-        url: '/products',
+        url: '/api/products',
         type: 'POST',
         data: udata,
         success: function(data){
@@ -610,7 +610,7 @@ function getProductToArchiv(id){
 
 // Delete
     return $.ajax({
-        url: `/products/${id}`,
+        url: `/api/products/${id}`,
         type: 'GET',
         success: function(data) {
           var {id, ...dbdata} = data
@@ -627,7 +627,7 @@ function getProductToArchiv(id){
 
 function archiveAProduct(data, id){
     return $.ajax({
-        url: `/archive`,
+        url: `/api/archive`,
         type: 'POST',
         data: data,
         success: function(res) {
@@ -655,7 +655,7 @@ function deleteProduct(evt){
 function deleteAtProduct(id){
 // Delete
   return $.ajax({
-        url: `/products/${id}`,
+        url: `/api/products/${id}`,
         type: 'DELETE',
         success: function(res) {
           console.log(res)
@@ -700,7 +700,7 @@ function makeUpdateProductDb(data){
   selected = localStorage.getItem("updateEditProductId")
   $(document).ready(function(){
       $.ajax({
-        url: `/products/${selected}`,
+        url: `/api/products/${selected}`,
         type: 'PUT',
         data: data, 
         success: function(data){
@@ -718,7 +718,7 @@ function makeUpdateProductDb(data){
   selected = localStorage.getItem("updateEditProductId")
   $(document).ready(function(){
       $.ajax({
-        url: `/products/${selected}`,
+        url: `/api/products/${selected}`,
         type: 'PUT',
         data: data, 
         success: function(data){
@@ -976,7 +976,7 @@ function addAProduct(cat) {
    
     $(document).ready(function(){
         $.ajax({
-          url: '/products',
+          url: '/api/products',
           type: 'POST',
           data: {
             name: cat.name,
@@ -1003,7 +1003,7 @@ function getBrands(htmlElementId) {
     console.log("seen")
     $(document).ready(function(){
         $.ajax({
-          url: '/brands/',
+          url: '/api/brands/',
           type: 'GET', 
           success: function(data){
             optionsParent(data, htmlElementId)
@@ -1021,7 +1021,7 @@ function getSpecificCategories(catChildId, id) {
     console.log("specific")
     $(document).ready(function(){
         $.ajax({
-          url: `/categories?parent=${id}`,
+          url: `/api/categories?parent=${id}`,
           type: 'GET', 
           success: function(data){
             console.log("success")
@@ -1043,7 +1043,7 @@ function getParentCategory(htmlElementId) {
 
     $(document).ready(function(){
         $.ajax({
-          url: '/parent/',
+          url: '/api/parent/',
           type: 'GET', 
           success: function(data){
             optionsParent(data, htmlElementId)
@@ -1160,7 +1160,7 @@ function removeImg(url) {
 
 function postImg(cat) {
     $.ajax({
-      url: '/image_url/',
+      url: '/api/image_url/',
       type: 'POST',
       data: {
         name: obj.name,
@@ -1181,7 +1181,7 @@ function postImg(cat) {
 // Delete
 function deleteImgFrmDb(id) {
     $.ajax({
-        url: `/image_url/${id}`,
+        url: `/api/image_url/${id}`,
         type: 'DELETE',
         success: function(res) {
           console.log('successful')

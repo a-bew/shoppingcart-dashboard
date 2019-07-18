@@ -125,7 +125,7 @@ function submitAddUser(){
   if (!error>0){
     $(document).ready(function(){
         $.ajax({
-          url: '/users',
+          url: '/api/users',
           type: 'POST',
           data: addUser, 
           success: function(data){
@@ -189,9 +189,9 @@ function apiUsersData(){
       
   } else if (tableUser == "hide"){
 
-    adminDetails(obj, `/user-type`);    
+    adminDetails(obj, `/api/user-type`);    
     // Populate users
-    adminDetails(obj, `/users`);
+    adminDetails(obj, `/api/users`);
  
   }
 
@@ -205,7 +205,7 @@ function apiUsersData(){
 // Delete
 function deleteUserAcct({ rel }) {
     $.ajax({
-        url: `/users/${rel}`,
+        url: `/api/users/${rel}`,
         type: 'DELETE',
         success: function(res) {
 		   var path={

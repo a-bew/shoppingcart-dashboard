@@ -194,7 +194,7 @@ function getUserName(){
     }
     rel = localStorage.getItem("Userid")
     $.ajax({
-        url: `/users/${rel}`,
+        url: `/api/users/${rel}`,
         type: 'GET',
         success: function({ fullname }) {
           name = fullname.split(' ');
@@ -215,12 +215,15 @@ function navigatePage(){
     return;
   }
   if (this.extra){
-    window.location.href = `/${this.linkpage}.html${this.extra}`
+//    window.location.href = `/${this.linkpage}.html${this.extra}`
+    window.location.href = `/${this.linkpage}${this.extra}`
     window.location.reload = true;
 
     return
   }
-  window.location.href = `/${this.linkpage}.html`
+//  window.location.href = `/${this.linkpage}.html`
+
+  window.location.href = `/${this.linkpage}`
   window.location.reload = true;
 
 }

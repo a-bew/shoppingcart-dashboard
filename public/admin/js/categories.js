@@ -23,7 +23,7 @@ function getParentCategories() {
 
     $(document).ready(function(){
         $.ajax({
-          url: '/parent/',
+          url: '/api/parent/',
           type: 'GET', 
           success: function(data){
             optionsParent(data)
@@ -74,7 +74,7 @@ function postToCat(cat) {
    
 	    $(document).ready(function(){
 	        $.ajax({
-	          url: '/categories/',
+	          url: '/api/categories/',
 	          type: 'POST',
 	          data: {
 	          	name: cat.name,
@@ -114,9 +114,9 @@ function apiCatData(){
   loading()
 
   //Populate 
-  accessEndPoint(objCat, `/parent`);    
+  accessEndPoint(objCat, `/api/parent`);    
   // Populate users
-  accessEndPoint(objCat, `/categories`);
+  accessEndPoint(objCat, `/api/categories`);
 }
 
 function populateCat(dict) {
@@ -170,7 +170,7 @@ function editCat(elm) {
     id = $(elm).attr('data-id')
     localStorage.setItem('cataId', id);
     $.ajax({
-        url: `/categories/${id}`,
+        url: `/api/categories/${id}`,
         type: 'GET',
         success: function(data) {
 
@@ -247,7 +247,7 @@ function updateCat(cat){
     if (cat.parent && cat.name){
 
 	    $.ajax({
-	        url: `/categories/${localStorage.getItem('cataId')}`,
+	        url: `/api/categories/${localStorage.getItem('cataId')}`,
 	        data: {
 	        	name: cat.name,
 	        	parent: cat.parent
@@ -274,7 +274,7 @@ function updateCat(cat){
 // Delete
 function deleteCat(elm) {
     $.ajax({
-        url: `/categories/${$(elm).attr('data-id')}`,
+        url: `/api/categories/${$(elm).attr('data-id')}`,
         type: 'DELETE',
         success: function(res) {
            var path={

@@ -44,8 +44,8 @@ const apiAdminData = ()=>{
     loading()
     //Populate user-type
     
-    adminDetails(obj, `/user-type`);    
+    adminDetails(obj, `/api/user-type`);    
     // Populate users
-    adminDetails(obj, `/users`);
+    adminDetails(obj, `/api/users`);
 }
 

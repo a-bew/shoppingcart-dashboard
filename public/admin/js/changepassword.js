@@ -66,7 +66,7 @@ function validatePassword(){
   $(document).ready(function(){
     const userId = localStorage.getItem("Userid")
     $.ajax({
-      url: `/users/${userId}`,
+      url: `/api/users/${userId}`,
       type: 'GET',
       success: function(data){
         const pass = outputInputs.call(data_collector(false))  

@@ -4,6 +4,7 @@ const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 const port = process.env.PORT || 4000;
+const path = require('path')
 
 
 const FileSync = require('lowdb/adapters/FileSync')
@@ -13,7 +14,6 @@ const adapter = new FileSync('db.json')
 const db = low(adapter)
 //db._.mixin(lodashId)
 
-const path = require('path')
 const fs = require('fs')
 const fetch = require('isomorphic-unfetch');
 
@@ -149,7 +149,52 @@ server.use((req, res, next) => {
   next()
 })
 
-server.use(router)
+
+server.use('/404', (req, res) => {
+   filename = '404'
+  res.sendFile(path.join(__dirname, `./../public/${filename}.html`))
+})
+
+//products
+
+server.use('/admin/:page', (req, res) => {
+   filename = req.params.page
+  res.sendFile(path.join(__dirname, `./../public/admin/${filename}.html`))
+})
+
+// server.use('/admin/users', (req, res) => {
+//   res.sendFile(path.join(__dirname, './../public/admin/users.html'))
+// })
+
+// server.use('/admin/change-password', (req, res) => {
+//   res.sendFile(path.join(__dirname, './../public/admin/change-password.html'))
+// })
+
+// server.use('/admin/categories', (req, res) => {
+//   res.sendFile(path.join(__dirname, './../public/admin/categories.html'))
+// })
+
+// server.use('/admin/brands', (req, res) => {
+//   res.sendFile(path.join(__dirname, './../public/admin/brand.html'))
+// })
+
+// server.use('/admin/archive', (req, res) => {
+//   res.sendFile(path.join(__dirname, './../public/admin/archive.html'))
+// })
+
+
+server.use('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, './../public/admin/index.html'))
+})
+
+// server.use('^(/?!\.*api)/', (req, res) => {
+//   res.sendFile(path.join(__dirname, './../public/404.html'))
+// })
+
+server.use('/api', router)
+
+
+
 server.listen(port, () => {
   console.log('JSON Server is running')
 })

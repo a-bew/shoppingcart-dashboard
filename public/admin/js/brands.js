@@ -52,7 +52,7 @@ function brands(data) {
 function getbrands() {
     $(document).ready(function(){
         $.ajax({
-          url: '/brands',
+          url: '/api/brands',
           type: 'GET', 
           success: function(data){
             brands(data)
@@ -77,7 +77,7 @@ function addBrand(){
   var error = brandValidation();
   if (!error){
 	    $.ajax({
-	        url: '/brands',
+	        url: '/api/brands',
 	        data: {
 	            name: $('#aBrand').val(),
 	        },
@@ -105,7 +105,7 @@ function edit(elm) {
 //	console.log(elm)
     localStorage.setItem('brandId',$(elm).attr('data-id'));
     $.ajax({
-        url: `/brands/${$(elm).attr("data-id")}`,
+        url: `/api/brands/${$(elm).attr("data-id")}`,
         type: 'GET',
         success: function(data) {
             //Populate the Pop up        
@@ -123,7 +123,7 @@ function edit(elm) {
 
 function updateBrand(){
     $.ajax({
-        url: `/brands/${localStorage.getItem('brandId')}`,
+        url: `/api/brands/${localStorage.getItem('brandId')}`,
         data: {
             name: $('#aBrand').val(),
             id: localStorage.getItem('brandId')
@@ -147,7 +147,7 @@ function updateBrand(){
 // Delete
 function brandDelete(elm) {
     $.ajax({
-        url: `/brands/${$(elm).attr('data-id')}`,
+        url: `/api/brands/${$(elm).attr('data-id')}`,
         type: 'DELETE',
         success: function(res) {
              var path={

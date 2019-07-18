@@ -32,7 +32,7 @@ const loginToAdminHome = (dict)=>{
 }
 
 const goToAdminHome = function(uiLocation){
-    var uiLocation = "admin/index"
+    var uiLocation = "admin"
          var path={
       linkpage:`${uiLocation}`
      } 
@@ -51,9 +51,9 @@ const obj = (param, r)=>{
 
 const apiData = ()=>{
     //Populate .select-make
-    loginEndPoint(obj, `/user-type`);    
+    loginEndPoint(obj, `/api/user-type`);    
 	// Populate .select-year-from
-    loginEndPoint(obj, `/users`);
+    loginEndPoint(obj, `/api/users`);
 }
 
 function updateLastLogin(id, type){

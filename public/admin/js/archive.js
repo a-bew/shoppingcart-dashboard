@@ -13,13 +13,13 @@ function apiArchiveData(){
 	loading();
 
 	//Populate 
-	productsPageEndPoint(objArchive, `/archive`);    
+	productsPageEndPoint(objArchive, `/api/archive`);    
 
 	// Populate parent
-	productsPageEndPoint(objArchive, `/parent`);
+	productsPageEndPoint(objArchive, `/api/parent`);
 
 	// Populate users
-	productsPageEndPoint(objArchive, `/categories`);	
+	productsPageEndPoint(objArchive, `/api/categories`);	
 
     getUserName()
 
@@ -102,13 +102,13 @@ function getImage(id){
 
 // Delete
     return $.ajax({
-        url: `/image_url/${id}`,
+        url: `/api/image_url/${id}`,
         type: 'GET',
         success: function({ url }) {
 
           deleteImgFrmDb(url)
 
-          var url = `/image_url/${id}`
+          var url = `/api/image_url/${id}`
           deleteImgFrmDb(url)
         },
         error: function(error) {
