@@ -6659,7 +6659,14 @@ nav li{
     width: 40%;
 }
 
+/* Admin login */
+.mid{
+  width: 80%;
+  margin: auto;
+}
+
 @media (min-width: 765px) {
+
   .set-form-edit-width{
     width: 50%;
   }
@@ -6675,13 +6682,15 @@ nav li{
 		background-color: white;
 		margin-right: -5px;
 	}
+
+  /* Admin login */
+  .mid{
+    width: 50%;
+    margin: auto;
+  }
+
 }
 
-/* Admin login */
-.mid{
-  width: 50%;
-  margin: auto;
-}
 
 .full-90{
   width: 90%
