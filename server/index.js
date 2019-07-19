@@ -21,7 +21,7 @@ const fetch = require('isomorphic-unfetch');
 
 // const fileType = require('file-type');
 var jqupload = require('jquery-file-upload-middleware');
-server.use('/js/', express.static(__dirname + '/node_modules/jquery/dist'));
+// server.use('/static', express.static(__dirname + '/node_modules/jquery/dist'));
 server.use(middlewares)
 
 // Add custom routes before JSON Server router
