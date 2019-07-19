@@ -151,13 +151,13 @@ function populateCat(dict) {
 	    	    content += '<tr style="background:green">';
 		        content += '<td>'+par+'</td>';
 			    content += '<td>Parent</td>';
-			    content += '<td><a><span class="fa fa-pencil"></span></a>&nbsp&nbsp<a><span class="fa fa-trash"></span></a></td>'
+			    content += '<td><a><span class="fa fa-pencil" ></span></a>&nbsp&nbsp<a><span class="fa fa-trash"></span></a></td>'
 			    content += '</tr>';           	                	
             }         
     	    content += '<tr>';
 	        content += '<td>'+cat+'</td>';
 		    content += '<td>'+par+'</td>';
-		    content += '<td><a data-id="'+ id +'" onclick="editCat(this)"><span class="fa fa-pencil"></span></a>&nbsp&nbsp<a data-id="'+ id +'" onclick="deleteCat(this)"><span class="fa fa-trash"></span></a></td>'
+		    content += '<td><a data-id="'+ id +'" onclick="editCat(this)"><span class="fa fa-pencil" style="cursor:pointer"></span></a>&nbsp&nbsp<a data-id="'+ id +'" onclick="deleteCat(this)"><span class="fa fa-trash" style="cursor:pointer"></span></a></td>'
 		    content += '</tr>';           	    
 	  })
    }

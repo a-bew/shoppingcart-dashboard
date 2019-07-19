@@ -67,7 +67,7 @@ function populateArchive(dict) {
         var id = elm["id"];
              
         content += '<tr>';
-        content += '<td><a rel='+ id +' onclick="deleteProductInArchive(this)"><span class="fa fa-trash"></span></a></td>';
+        content += '<td><a rel='+ id +' onclick="deleteProductInArchive(this)"><span class="fa fa-trash" style="cursor:pointer"></span></a></td>';
         content += '<td>' + product + '</td>';
         content += '<td>' + `$${price}` + '</td>';
         content += '<td>' + category + '</td>';
@@ -85,7 +85,7 @@ function getArchivProductImgId(id){
 // Delete
 // 
     return $.ajax({
-        url: `/archive/${id}`,
+        url: `/api/archive/${id}`,
         type: 'GET',
         success: function({ image_ids }) {
           console.log(image_ids)
@@ -148,7 +148,7 @@ function deleteProductInArchive(evt){
 function deleteProductItemInAchive(id){
 // Delete
   return $.ajax({
-        url: `/archive/${id}`,
+        url: `/api/archive/${id}`,
         type: 'DELETE',
         success: function(res) {
           console.log(res)

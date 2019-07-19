@@ -351,7 +351,7 @@ function populateProducts(dict) {
       var id = elm["id"];
            
       content += '<tr>';
-      content += '<td><a rel='+ id +' onclick="showEditProductForm(this)"><span class="fa fa-pencil"></span></a>&nbsp&nbsp<a rel='+ id +' onclick="deleteProduct(this)"><span class="fa fa-archive"></span></a> </td>';
+      content += '<td><a rel='+ id +' onclick="showEditProductForm(this)"><span class="fa fa-pencil" style="cursor:pointer"></span></a>&nbsp&nbsp<a rel='+ id +' onclick="deleteProduct(this)"><span class="fa fa-archive" style="cursor:pointer"></span></a> </td>';
       content += '<td>' + product + '</td>';
       content += '<td>' + `$${price}` + '</td>';
       content += '<td>' + category + '</td>';

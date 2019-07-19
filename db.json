@@ -6,7 +6,7 @@
       "user_type": 1,
       "email": "adetola013@gmail.com",
       "join_date": "",
-      "last_login": 1563549436883,
+      "last_login": 1563555084831,
       "password": "11111"
     },
     {
@@ -46,10 +46,6 @@
   ],
   "brands": [
     {
-      "name": "Adidas",
-      "id": 1
-    },
-    {
       "name": "kelvin klein",
       "id": 2
     },
@@ -80,6 +76,11 @@
     {
       "name": "Nike",
       "id": 9
+    },
+    {
+      "name": "Adidas",
+      "createdAt": 1563553393355,
+      "id": 10
     }
   ],
   "parent": [

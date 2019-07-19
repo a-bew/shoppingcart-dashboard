@@ -14,15 +14,38 @@ function addBrandInput(label, buttonClck, btnLabel, value){
 	var content = "";
   	content += '<h2>Brands</h2>'   
     content += '<div class="add-a-brand-control">' 
-    content += '<div class="col-md-4 col-sm-12 " style="padding: 10px 0;">'
+    content += '<div class="col-md-3 col-sm-12 " style="padding: 10px 0;">'
     content += '<label class="control-label">'+ label +'</label>';                    		
     content += '</div>';
-    content += '<div class=" col-md-4 col-sm-12">';
+    content += '<div class=" col-md-6 col-sm-12">';
     content += '<input type="text" class="form-control" name="brand" id="aBrand" value="'+ (value?value:"")+'">'
     content += '</div>';
-    content += '<div class="col-md-4 col-sm-12" >'
+    content += '<div class="col-md-3 col-sm-12" >'
     content += '<input type="button" name="add-brand" class="btn btn-success" onclick="'+buttonClck+'(this)" value="'+btnLabel+'">'                    	
     content += '</div>';
+    content += '</div>';
+
+    $("#brand-input-box").html(content);
+}
+
+function editBrandInput(label, buttonClck, btnLabel, value, buttonCancelClck, btnCancelLabel){
+  console.log(value,"----");
+  var content = "";
+    content += '<h2>Brands</h2>'   
+    content += '<div class="add-a-brand-control">' 
+    content += '<div class="col-md-3 col-sm-12 " style="padding: 10px 0;">'
+    content += '<label class="control-label">'+ label +'</label>';                        
+    content += '</div>';
+    content += '<div class=" col-md-5 col-sm-12">';
+    content += '<input type="text" class="form-control" name="brand" id="aBrand" value="'+ (value?value:"")+'">'
+    content += '</div>';
+    content += '<div class="col-md-2 col-sm-12" >'
+    content += '<input type="button" name="add-brand" class="btn btn-default" onclick="'+buttonCancelClck+'(this)" value="'+btnCancelLabel+'"/>'                     
+    content += '</div>';
+    content += '<div class="col-md-2 col-sm-12" >'
+    content += '<input type="button" name="add-brand" class="btn btn-success" onclick="'+buttonClck+'(this)" value="'+btnLabel+'"/>'                     
+    content += '</div>';
+
     content += '</div>';
 
     $("#brand-input-box").html(content);
@@ -37,11 +60,11 @@ function brands(data) {
     $.each(brandsObj, function(index, value) {
 		content += '<li class="list-group-item mid">';
 	    content += '<div class="pull-left">';
-	    content += '<a class="" data-id="'+ value.id +'" onclick="edit(this)"><span class="fa fa-pencil"></span></a>'                    		
+	    content += '<a class="" data-id="'+ value.id +'" onclick="edit(this)"><span class="fa fa-pencil" style="cursor:pointer"></span></a>'                    		
 	    content += '</div>';
 	    content += '<label>'+ value.name +'</label>';
 	    content += '<div class="pull-right ">';
-	    content += '<a name="" class="" id = "btnUpdateBrand" onclick = "brandDelete(this)" data-id="'+ value.id +'"><span class="fa fa-trash"></span></a>';                    	
+	    content += '<a name="" class="" id = "btnUpdateBrand" onclick = "brandDelete(this)" data-id="'+ value.id +'"><span class="fa fa-trash" style="cursor:pointer"></span></a>';                    	
 	    content += '</div>';	              			            
 	    content += '</li>';
     });
@@ -87,7 +110,7 @@ function addBrand(){
 	        type: 'POST',
 	        success: function(data) {
              var path={
-              linkpage:"admin/brand"
+              linkpage:"admin/brands"
              } 
              navigatePage.call(path);
 
@@ -111,7 +134,7 @@ function edit(elm) {
         type: 'GET',
         success: function(data) {
             //Populate the Pop up        
-            addBrandInput(label="Edit A Brand", buttonClck="updateBrand", btnLabel="Submit", value=data['name'])
+            editBrandInput(label="Edit A Brand", buttonClck="updateBrand", btnLabel="Submit", value=data['name'], buttonClck="cancelBrand", btnLabel="Cancel")
             // $('#aBrand').val();
              
         },
@@ -122,6 +145,11 @@ function edit(elm) {
 }
 
 // Update Event
+
+function cancelBrand(){
+    addBrandInput(label="Add A Brand", buttonClck="addBrand", btnLabel="Add a Brand")
+
+}
 
 function updateBrand(){
     $.ajax({
@@ -134,7 +162,7 @@ function updateBrand(){
         type: 'PUT',
         success: function(data) {
            var path={
-            linkpage:"admin/brand"
+            linkpage:"admin/brands"
            } 
            navigatePage.call(path);
            window.location.reload=true;
@@ -153,7 +181,7 @@ function brandDelete(elm) {
         type: 'DELETE',
         success: function(res) {
              var path={
-              linkpage:"admin/brand"
+              linkpage:"admin/brands"
              } 
              navigatePage.call(path);
         },

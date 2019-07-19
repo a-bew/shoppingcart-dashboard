@@ -40,7 +40,7 @@ function populateUsers(dict) {
     }
     var id = elm["id"];
     content += '<tr>';
-    content += '<td><a rel='+ id +' onclick="deleteUserAcct(this)"><span class="fa fa-trash"></span></a></td>';
+    content += '<td><a rel='+ id +' onclick="deleteUserAcct(this)"><span class="fa fa-trash" style="cursor:pointer"></span></a></td>';
     content += '<td>' + name + '</td>';
     content += '<td>' + email + '</td>';
     content += '<td>' + join_date + '</td>';
