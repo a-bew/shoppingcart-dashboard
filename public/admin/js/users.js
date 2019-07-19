@@ -1,7 +1,9 @@
 window.onload = usersFunc;
 
 function usersFunc(){
-  apiUsersData(); 
+  $(document).ready(function() {
+    apiUsersData(); 
+  })
 }
 
 // populateUsers

@@ -1,10 +1,10 @@
 window.onload = utilityLoginInAdmin;
 
 function utilityLoginInAdmin(){
-
-  resetLocal() 
-
-  $("#btnSubmit").click(apiData);
+  $(document).ready(function() {
+    resetLocal() 
+    $("#btnSubmit").click(apiData);
+  })
 }
 
 function Userdetails(){
@@ -57,21 +57,24 @@ const apiData = ()=>{
 }
 
 function updateLastLogin(id, type){
-    $.ajax({
-        url: `/updates/user/lastlogin/${id}`,
-        data: {
-            last_login: Date.now(),
-            id: id
-        },
-        dataType: 'json', 
-        type: 'PUT',
-        success: function(data) {
-          goToAdminHome(type)
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
+  $(document).ready(function(){
+
+      $.ajax({
+          url: `/updates/user/lastlogin/${id}`,
+          data: {
+              last_login: Date.now(),
+              id: id
+          },
+          dataType: 'json', 
+          type: 'PUT',
+          success: function(data) {
+            goToAdminHome(type)
+          },
+          error: function(error) {
+              console.log(error);
+          }
+      });
+  })
 }
 
 function resetLocal(){

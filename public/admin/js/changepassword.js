@@ -1,7 +1,9 @@
 window.onload = changePassFunc;
 
 function changePassFunc(){
-  addChangePassEvents();
+  $(document).ready(function() {
+    addChangePassEvents();
+  })
 }
 
 function fill(classV, clear_fill){
@@ -107,10 +109,10 @@ function submitChangePassword(passcode){
       }
     })
   })
-
 }
 
 function addChangePassEvents(){
+  loading();
   document.querySelector("#btnSubmitChangePassword").addEventListener("click", function(event){ event.preventDefault(); validatePassword()});
   outputInputs.call(data_collector(true))
   getUserName()

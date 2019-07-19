@@ -1,7 +1,9 @@
 window.onload = utilityAdmins;
 
 function utilityAdmins(){
-  apiAdminData();
+  $(document).ready(function() {
+    apiAdminData();
+  })
 }
 
 function adminusers(dict) {

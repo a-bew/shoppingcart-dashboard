@@ -1,10 +1,12 @@
 window.onload = brandFunc;
 
 function brandFunc(){
-  addBrandInput(label="Add A Brand", buttonClck="addBrand", btnLabel="Add a Brand")
-  getbrands()
-  getUserName()
+  $(document).ready(function() {
 
+    addBrandInput(label="Add A Brand", buttonClck="addBrand", btnLabel="Add a Brand")
+    getbrands()
+    getUserName()
+  })
 }
 
 function addBrandInput(label, buttonClck, btnLabel, value){

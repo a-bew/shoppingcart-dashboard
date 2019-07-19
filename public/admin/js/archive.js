@@ -1,8 +1,10 @@
 window.onload = archiveFunc;
 
 function archiveFunc(){
-  setTimeout(apiArchiveData(), 0); 
- 
+  $(document).ready(function() {
+
+    setTimeout(apiArchiveData(), 0); 
+  })
   // $("#productPhoto").change(function(event){ collectInput.setProductPhoto(event)});
 }
 
@@ -10,7 +12,8 @@ dict = {};
 var i=1;
 
 function apiArchiveData(){
-	loading();
+	
+  loading();
 
 	//Populate 
 	productsPageEndPoint(objArchive, `/api/archive`);    
@@ -21,7 +24,7 @@ function apiArchiveData(){
 	// Populate users
 	productsPageEndPoint(objArchive, `/api/categories`);	
 
-    getUserName()
+  getUserName()
 
 }
 

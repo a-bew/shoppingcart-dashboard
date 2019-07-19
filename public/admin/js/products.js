@@ -1,7 +1,8 @@
 window.onload = productFunc;
 
 function productFunc(){
-  setTimeout(apiProductData(), 0); 
+
+  apiProductData(); 
   
   //  Image Length - To track the last json db image id
   DbLastImageId()
@@ -609,24 +610,31 @@ function  cancelEditProduct(){
 function getProductToArchiv(id){
 
 // Delete
-    return $.ajax({
-        url: `/api/products/${id}`,
-        type: 'GET',
-        success: function(data) {
-          var {id, ...dbdata} = data
-          archiveAProduct(dbdata, id)
-          console.log(res)
-                // window.location.href='/admin/categories.html';
-                // window.location.reload=true;                
-        },
-        error: function(error) {
-            console.log(error);
-        }
+  $(document).ready(function(){
+
+      $.ajax({
+          url: `/api/products/${id}`,
+          type: 'GET',
+          success: function(data) {
+            var {id, ...dbdata} = data
+            archiveAProduct(dbdata, id)
+            console.log(res)
+                  // window.location.href='/admin/categories.html';
+                  // window.location.reload=true;                
+          },
+          error: function(error) {
+              console.log(error);
+          }
+      });
     });
+
 }
 
 function archiveAProduct(data, id){
-    return $.ajax({
+    
+  $(document).ready(function(){
+
+  $.ajax({
         url: `/api/archive`,
         type: 'POST',
         data: data,
@@ -643,8 +651,9 @@ function archiveAProduct(data, id){
             console.log(error);
         }
     });
-
+  })  
 }
+
 function deleteProduct(evt){
   id = evt.rel
   return getProductToArchiv(id)
@@ -654,23 +663,26 @@ function deleteProduct(evt){
 
 function deleteAtProduct(id){
 // Delete
-  return $.ajax({
-        url: `/api/products/${id}`,
-        type: 'DELETE',
-        success: function(res) {
-          console.log(res)
-         var path={
-          linkpage:"admin/products"
-         } 
-         navigatePage.call(path);
+   $(document).ready(function(){
 
-                // window.location.href='/admin/categories.html';
-                // window.location.reload=true;                
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
+      $.ajax({
+            url: `/api/products/${id}`,
+            type: 'DELETE',
+            success: function(res) {
+              console.log(res)
+             var path={
+              linkpage:"admin/products"
+             } 
+             navigatePage.call(path);
+
+                    // window.location.href='/admin/categories.html';
+                    // window.location.reload=true;                
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+  })  
 
 }
 // Submit Edit Product Form
@@ -1144,21 +1156,25 @@ $('#editProductPhoto').fileupload({
 
 // Delete/Remove Img
 function removeImg(url) {
-  $.ajax({
-    url: url,
-    type: 'DELETE',
-    success: function(res) {
-      
-      resetProductPhoto(Array.from(collectInput.productPhoto))
-      console.log("Found", res)
-    },
-    error: function(error) {
-      console.log(error);
-    }
-  });
+  $(document).ready(function(){
+      $.ajax({
+        url: url,
+        type: 'DELETE',
+        success: function(res) {
+          
+          resetProductPhoto(Array.from(collectInput.productPhoto))
+          console.log("Found", res)
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+  })
 }
 
 function postImg(cat) {
+  $(document).ready(function(){
+
     $.ajax({
       url: '/api/image_url/',
       type: 'POST',
@@ -1176,10 +1192,13 @@ function postImg(cat) {
       }
     })
     // JQuery code to be added in here.
+  })
 }
 
 // Delete
 function deleteImgFrmDb(id) {
+  $(document).ready(function(){
+
     $.ajax({
         url: `/api/image_url/${id}`,
         type: 'DELETE',
@@ -1190,4 +1209,5 @@ function deleteImgFrmDb(id) {
           console.log(error);
         }
     });
+  })
 }

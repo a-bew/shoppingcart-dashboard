@@ -1,5 +1,7 @@
 // server.js
 const jsonServer = require('json-server')
+var express = require('express');
+
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
@@ -19,7 +21,7 @@ const fetch = require('isomorphic-unfetch');
 
 // const fileType = require('file-type');
 var jqupload = require('jquery-file-upload-middleware');
-
+server.use('/js/', express.static(__dirname + '/node_modules/jquery/dist'));
 server.use(middlewares)
 
 // Add custom routes before JSON Server router
@@ -192,8 +194,6 @@ server.use('/admin', (req, res) => {
 // })
 
 server.use('/api', router)
-
-
 
 server.listen(port, () => {
   console.log('JSON Server is running')

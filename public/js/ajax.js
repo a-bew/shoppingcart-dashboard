@@ -188,6 +188,8 @@ function locateBaseUrl(){
 
 
 function getUserName(){
+  $(document).ready(function(){
+
     if (!localStorage.getItem("Userid")){
      document.querySelector("#hello-world").textContent = `Hello, World`          
       return
@@ -205,6 +207,7 @@ function getUserName(){
         }
     });
 
+  })
 }
 
 function navigatePage(){
@@ -245,12 +248,13 @@ function loading(){
      } 
      if (this.msg){
        alert(this.msg)  
-       return
+       return false
      }
 
     navigatePage.call(path);
-    return
+    return false
   }
+  return true
 }
 
 

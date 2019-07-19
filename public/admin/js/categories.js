@@ -1,20 +1,22 @@
 window.onload = catFunc;
 
 function catFunc(argument) {
-  // populate select element
-  getParentCategories();
+    $(document).ready(function() {
 
-  // populate categories/parent table
-  apiCatData()
+    // populate select element
+    getParentCategories();
 
-  // get selected category value
-  document.querySelector(".selectCat").addEventListener("change", getCatAttr);
+    // populate categories/parent table
+    apiCatData()
 
-  // post submitCategoriesData
-  document.querySelector("#btnSubmitCat").addEventListener("click", function(){postToCat(catObj)});
+    // get selected category value
+    document.querySelector(".selectCat").addEventListener("change", getCatAttr);
 
-  getUserName()
+    // post submitCategoriesData
+    document.querySelector("#btnSubmitCat").addEventListener("click", function(){postToCat(catObj)});
 
+    getUserName()
+  })
 }
 
 // Populate Parent
