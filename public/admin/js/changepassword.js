@@ -47,44 +47,46 @@ function changePass(pass){
 }
 
 function validatePassword(){
-  loading.call({msg:"You are not logged in"})
-
-  const pass = outputInputs.call(data_collector(false))  
-  const changepass = changePass(pass)
-  const error = errorChecker(pass)
-  console.log(error)
-  if (error>0){
-    alert("Please Fill in all entries")
-    outputInputs.call(data_collector(true))
-    return
-  }
-
-  if (!changepass){
-      alert("New password error. Please try again!")
-      outputInputs.call(data_collector(true))
-      return
-  }
 
   $(document).ready(function(){
-    const userId = localStorage.getItem("Userid")
-    $.ajax({
-      url: `/api/users/${userId}`,
-      type: 'GET',
-      success: function(data){
-        const pass = outputInputs.call(data_collector(false))  
-        const { oldPassword, password } = pass;
-        if (data.password === oldPassword){
-          submitChangePassword(password)
-        } else{
-          alert("Invalid password")
-          outputInputs.call(data_collector(true))
 
+    loading.call({msg:"You are not logged in"})
+
+    const pass = outputInputs.call(data_collector(false))  
+    const changepass = changePass(pass)
+    const error = errorChecker(pass)
+    console.log(error)
+    if (error>0){
+      alert("Please Fill in all entries")
+      outputInputs.call(data_collector(true))
+      return
+    }
+
+    if (!changepass){
+        alert("New password error. Please try again!")
+        outputInputs.call(data_collector(true))
+        return
+    }
+
+      const userId = localStorage.getItem("Userid")
+      $.ajax({
+        url: `/api/users/${userId}`,
+        type: 'GET',
+        success: function(data){
+          const pass = outputInputs.call(data_collector(false))  
+          const { oldPassword, password } = pass;
+          if (data.password === oldPassword){
+            submitChangePassword(password)
+          } else{
+            alert("Invalid password")
+            outputInputs.call(data_collector(true))
+
+          }
+        },
+        error: function(error) {
+          console.log(error);
         }
-      },
-      error: function(error) {
-        console.log(error);
-      }
-    })
+      })
   })
 }
 
