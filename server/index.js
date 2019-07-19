@@ -33,7 +33,7 @@ server.use('/upload', function(req, res, next){
   var now = Date.now();
   jqupload.fileHandler({
 	  uploadDir: function(){
-	    return __dirname + '/public/uploads/' + now;
+	    return __dirname + './../public/uploads/' + now;
 	},
     uploadUrl: function(){ 
       return '/uploads/' + now;
@@ -44,7 +44,7 @@ server.use('/upload', function(req, res, next){
 jqupload.on('end', function(fileInfo, req, res){
 	console.log(fileInfo)
 	var s = "";
-	fetch('http://localhost:3000/api/image_url', {
+	fetch(`http://localhost:${port}/api/image_url`, {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -65,7 +65,7 @@ jqupload.on('end', function(fileInfo, req, res){
 server.delete('/uploads/:filename', function(req, res, next){
 	filename = req.params.filename;
 	console.log(filename);
-	fs.unlink(path.join(__dirname, 'public/upload/' + filename), function(err) {
+	fs.unlink(path.join(__dirname, './../public/upload/' + filename), function(err) {
 	if (err) {
 	  return console.error(err);
 	}
@@ -123,12 +123,12 @@ server.delete('/uploads/:date/:filename', function(req, res, next){
   date = req.params.date
   filename = req.params.filename 
   console.log(filename, date)
-  fs.unlink(path.join(__dirname, 'public/uploads/'+date+'/'+ filename), function(err) {
+  fs.unlink(path.join(__dirname, './../public/uploads/'+date+'/'+ filename), function(err) {
 	if (err) {
 	  return console.error(err);
 	}
 	  // remove dir
-	  fs.rmdir(path.join(__dirname, 'public/uploads/'+date), function(err) {
+	  fs.rmdir(path.join(__dirname, './../public/uploads/'+date), function(err) {
 		if (err) {
 		  return console.error(err);
 		}

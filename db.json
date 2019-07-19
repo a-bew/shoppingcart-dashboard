@@ -6,7 +6,7 @@
       "user_type": 1,
       "email": "adetola013@gmail.com",
       "join_date": "",
-      "last_login": 1563542716146,
+      "last_login": 1563549436883,
       "password": "11111"
     },
     {
@@ -17,6 +17,17 @@
       "join_date": "",
       "last_login": 1563545660592,
       "password": "01234"
+    },
+    {
+      "fullname": "Shola Allison",
+      "email": "shola@hotmail.com",
+      "password": "00000",
+      "confirm_password": "00000",
+      "user_type": "1",
+      "join_date": "1563549536771",
+      "last_login": "Never",
+      "createdAt": 1563549537758,
+      "id": 3
     }
   ],
   "user-type": [
